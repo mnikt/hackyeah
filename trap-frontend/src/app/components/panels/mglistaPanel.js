@@ -15,7 +15,7 @@ const MglistaPanel = ({ score }) => {
                 </div>
                 
                 {/* Rainbow Slider reflects the score */}
-                <RainbowSlider value={score} />
+                <RainbowSlider value={score} style={rainbow} />
             </Card>
         </div>
     );
@@ -29,19 +29,23 @@ const cardStyle = {
     maxWidth: '800px',
     margin: 'auto',
     boxShadow: 'none',
-    overflow: 'hidden' 
+    overflow: 'hidden'
   };
 
 const header = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: '30px'
+    paddingBottom: '25px'
 }
 
 const highlight = {
     color: "#407BFF",
     margin: 0
+}
+
+const rainbow = {
+    paddingBottom: '15px'
 }
 
 export default MglistaPanel;

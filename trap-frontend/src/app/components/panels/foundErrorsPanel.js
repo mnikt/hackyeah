@@ -6,6 +6,10 @@ import { faVideo, faHeadphones, faAlignLeft } from '@fortawesome/free-solid-svg-
 const FoundErrorsPanel = ({ videoErrors, audioErrors, textErrors }) => {
     const totalErrors = videoErrors + audioErrors + textErrors; // Calculate total errors
 
+    const videoBarWidth = (videoErrors / totalErrors) * 100 + "%";
+    const audioBarWidth = (audioErrors / totalErrors) * 100 + "%";
+    const textBarWidth = (textErrors / totalErrors) * 100 + "%";
+
     return (
         <div>
             <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
@@ -16,6 +20,12 @@ const FoundErrorsPanel = ({ videoErrors, audioErrors, textErrors }) => {
                 </div>
                 
                 {/* Display individual error counts */}
+                <div style={barChartContainer}>
+                    <div style={{ ...bar, width: videoBarWidth, backgroundColor: '#F4A300' }} /> {/* Video Bar */}
+                    <div style={{ ...bar, width: audioBarWidth, backgroundColor: '#FF5656' }} /> {/* Audio Bar */}
+                    <div style={{ ...bar, width: textBarWidth, backgroundColor: '#6CC744' }} /> {/* Text Bar */}
+                </div>
+
                 <div style={columns}>
                     {/* Video Errors */}
                     <div style={item}>
@@ -52,6 +62,24 @@ const cardStyle = {
     overflow: 'hidden' 
 };
 
+/* Bar Chart Styles */
+const barChartContainer = {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    height: '15px',  // Height of the entire bar chart
+    marginBottom: '20px',
+    backgroundColor: '#e0e0e0',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    margin: '25px 0 15px 0'
+};
+
+const bar = {
+    height: '100%',
+    transition: 'width 0.3s ease-in-out'
+};
+
 const header = {
     display: 'flex',
     justifyContent: 'space-between',
@@ -67,7 +95,7 @@ const columns = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',  // Align items to center to make them uniform
-    padding: '15px'
+    padding: '0 15px 15px 15px'
 };
 
 const item = {

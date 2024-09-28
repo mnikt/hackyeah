@@ -9,6 +9,7 @@ import VideoPanel from "./panels/VideoPanel";
 import WordSuggestionPanel from "./panels/wordSuggestionPanel";
 import QuestionsPanel from "./panels/questionsPanel";
 import ErrorsPanel from "./panels/errorsPanel";
+import AudiencePanel from "./panels/audiencePanel";
 
 const keywords = [
     "cooked soup", 
@@ -19,6 +20,19 @@ const keywords = [
     "cooked soup", 
     "super bad"
   ];
+
+  const educationLevel = {
+    PRIMARY: { title: 'Podstawowe', emoji: '📚' },
+    SECONDARY: { title: 'Średnie', emoji: '🎒' },
+    HIGHER: { title: 'Wyższe', emoji: '🎓' }
+  };
+  
+  // Define the "knowledgeLevel" enum
+  const knowledgeLevel = {
+    GENERAL: { title: 'Ogólne', emoji: '📝' },
+    ACADEMIC: { title: 'Akademickie', emoji: '🧑‍🔬' },
+    BUSINESS: { title: 'Biznesowe', emoji: '💼' },
+  };
 
   const textDictionary = {
     1: [
@@ -80,20 +94,24 @@ const PageContent = () => {
 
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
-
-            <VidInfoPanel videoDuration="0:31" videoSize="76" date="14.10.2024" textWordCount="473" textSize="53" />
-
             <SummaryPanel summary="Na podstawie załączonego zrzutu ekranu, analiza tekstu oraz wideo dotyczy sprawdzenia treści pod kątem błędów językowych, złożoności tekstu i proponowanych sugestii poprawy. Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia. Znaleziono 21 błędów, podzielonych na różne kategorie (np. 4 błędy merytoryczne, 11 stylowych i 6 innych). System wyświetla również sugestie dotyczące doboru słów, fraz kluczowych oraz zawiera pytania diagnostyczne dotyczące tekstu. Cały proces opiera się na analizie audiowizualnej oraz tekstowej, wspieranej przez automatyczne sugestie poprawy i ocenę czytelności." />
+            <QuestionsPanel questions={questions} />
         </div>
 
         <div style={questionColumn}>
+            <VidInfoPanel videoDuration="0:31" videoSize="76" date="14.10.2024" textWordCount="473" textSize="53" />
             <MglistaPanel score={33}/>
+
+            <AudiencePanel title="Grupa Odbiorcza" 
+                icon={educationLevel.HIGHER.emoji}
+                label={educationLevel.HIGHER.title}
+                icon2={knowledgeLevel.BUSINESS.emoji}
+                label2={knowledgeLevel.BUSINESS.title}
+            />
 
             <WordSuggestionPanel keywords={keywords} />
 
             <KeywordPanel keywords={keywords} />
-
-            <QuestionsPanel questions={questions} />
         </div>
     </main>
   );
