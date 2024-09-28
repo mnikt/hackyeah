@@ -1,0 +1,41 @@
+/* Styles for the header section */
+h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #1e74fa; /* Blue color for count */
+  }
+  
+  /* Container for the keyword boxes */
+  .keywordsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between the keyword boxes */
+    margin-top: 15px;
+  }
+  
+  /* Each keyword box style */
+  .keywordBox {
+    padding: 8px 12px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: black;
+  }
+  
+  /* Header styling */
+  .headerStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Highlight for the count */
+  .highlightStyle {
+    color: #1e74fa; /* Matches the blue color in the screenshot */
+  }
