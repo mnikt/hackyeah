@@ -1,0 +1,5 @@
+trapstar-env/
+backend/api/secrets.py
+backend/api/__pycache__/*
+backend/api/migrations/__pycache__/*
+backend/backend/__pycache__/*
