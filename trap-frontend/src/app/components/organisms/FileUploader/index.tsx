@@ -1,13 +1,15 @@
 'use client';
 
 import { FormEvent, FormEventHandler, useState } from "react";
-import { Button, FileInput } from "@blueprintjs/core";
+import { Button, FileInput, Spinner } from "@blueprintjs/core";
 import AddedFileLabel from "../../molecules/AddedFileLabel";
+import { useRouter } from "next/navigation";
 
 const FileUploader = () => {
+  const [loading, setLoading] = useState(false);
   const [addedFiles, setAddedFiles] = useState<Array<File>>([]);
 
-  console.log('addedFiles: ', addedFiles)
+  const router = useRouter();
 
   const handleInputChange: FormEventHandler<HTMLInputElement> = (event) => {
     const files = event.target.files as FileList;
@@ -25,12 +27,17 @@ const FileUploader = () => {
 
 
     try {
-      const response = await fetch("http://34.118.88.52:8000/api", {
+      setLoading(true);
+      const response = await fetch("http://127.0.0.1:8000/api", {
         method: "POST",
         body: formData,
       });
 
-      console.log('response: ', response);
+      const jsonResponse = await response.json();
+      localStorage.setItem('response', JSON.stringify(jsonResponse));
+
+      router.push('/dashboard');
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -43,16 +50,17 @@ const FileUploader = () => {
 
   return (
     <div>
-      <p>Dodaj jeden lub dwa nagrania</p>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
         <div>
-          <FileInput inputProps={{multiple: true}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+          { loading ? <Spinner /> :
+            <FileInput inputProps={{multiple: true}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+          }
         </div>
+        {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
         <div>
-          <Button type="submit" text="Wrzuć do analizy"/>
+          <Button disabled={loading} type="submit" text="Wrzuć do analizy"/>
         </div>
       </form>
-      {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
     </div>
   )
 };
