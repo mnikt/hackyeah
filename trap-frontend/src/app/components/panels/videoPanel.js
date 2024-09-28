@@ -17,8 +17,8 @@ const VideoPanel = ({ videoSrc }) => {
 // Styles for the component
 const cardStyle = {
     padding: '0', // Remove padding
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
+    borderRadius: '15px',
+    backgroundColor: '#f4f4f4',
     width: '100%',
     maxWidth: '800px',
     margin: 'auto',

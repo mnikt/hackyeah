@@ -26,9 +26,13 @@ const TimelinePanel = ({ textDictionary }) => {
 // Styles
 const cardStyle = {
   padding: '0', // Eliminate padding inside the card
-  backgroundColor: '#f9f9f9',
-  borderRadius: '8px',
-  overflow: 'hidden' // Ensures no overflow issues due to negative padding
+  borderRadius: '15px',
+    backgroundColor: '#f4f4f4',
+    width: '100%',
+    maxWidth: '800px',
+    margin: 'auto',
+    boxShadow: 'none',
+    overflow: 'hidden' 
 };
 
 const scrollableContent = {

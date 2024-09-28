@@ -27,8 +27,13 @@ const KeywordPanel = ({ keywords }) => {
 
 const cardStyle = {
     padding: '15px',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9'
+    borderRadius: '15px',
+    backgroundColor: '#f4f4f4',
+    width: '100%',
+    maxWidth: '800px',
+    margin: 'auto',
+    boxShadow: 'none',
+    overflow: 'hidden' 
   };
 
 const header = {

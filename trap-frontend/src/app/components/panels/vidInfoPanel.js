@@ -8,10 +8,10 @@ const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize 
         {/* Video Info Section */}
         <div style={infoRow}>
           <div style={sectionStyle}>
-            <h4>Plik Wideo</h4>
+            <h4 style={sectionTitle}>Plik Wideo</h4>
             <div style={infoContainer}>
               <span style={highlight}>{videoDuration}</span>
-              <span style={unit}>sek</span>
+              <span style={unit}>czas</span>
               <span style={divider}>|</span>
               <span style={highlight}>{videoSize}</span>
               <span style={unit}>mb</span>
@@ -23,7 +23,7 @@ const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize 
 
           {/* Text Info Section */}
           <div style={sectionStyle}>
-            <h4>Tekst</h4>
+            <h4 style={sectionTitle}>Tekst</h4>
             <div style={infoContainer}>
               <span style={highlight}>{textWordCount}</span>
               <span style={unit}>słów</span>
@@ -41,15 +41,26 @@ const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize 
 // Styles for the component
 const cardStyle = {
   padding: '15px',
-  borderRadius: '8px',
-  backgroundColor: '#f9f9f9'
+  borderRadius: '15px',
+    backgroundColor: '#f4f4f4',
+    width: '100%',
+    maxWidth: '800px',
+    margin: 'auto',
+    boxShadow: 'none',
+    overflow: 'hidden' 
 };
 
 const infoRow = {
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center'
+  alignItems: 'center',
+  flexWrap: 'wrap',
+  gap: '10px'
 };
+
+const sectionTitle = {
+    marginBottom: '5px'
+}
 
 const sectionStyle = {
   flex: '1',
@@ -71,12 +82,12 @@ const highlight = {
 const unit = {
   fontSize: '12px',
   color: 'gray',
-  paddingBottom: '2px'
+  paddingBottom: '1px'
 };
 
 const divider = {
   color: 'lightgray',
-  margin: '0 10px'
+  margin: '0 15px'
 };
 
 export default VidInfoPanel;

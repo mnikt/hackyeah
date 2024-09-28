@@ -1,28 +1,26 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns, faDownload } from '@fortawesome/free-solid-svg-icons';
+import styles from "../css/header.module.css";
 
 const Header = () => {
   return (
-    <header style={headerStyle}>
+    <header className={styles.headerStyle}>
         <div style={container}>
-            <div style={logoSide}>
-                <div style={logo}></div>
-                <a style={logoName} href="#">Breaking Bad</a>
-            </div>
+            <div style={logoImage}></div>
 
-            <div style={buttonsSide}>
-                <button style={button} className="custom-button">
+            <div className={styles.buttonContainer}>
+                <button className={styles.primaryButton}>
                     <span style={buttonLabel}>
-                        <FontAwesomeIcon icon={faTableColumns} style={buttonLabelIcon} />
-                        <p style={buttonLabelLabel}>Porównaj</p>
+                        <FontAwesomeIcon icon={faTableColumns} />
+                        Porównaj
                     </span>
                 </button>
 
-                <button style={button} className="custom-button">
+                <button className={styles.secondaryButton}>
                     <span style={buttonLabel}>
-                        <FontAwesomeIcon icon={faDownload} style={buttonLabelIcon} />
-                        <p style={buttonLabelLabel}>Zapisz Raport</p>
+                        <FontAwesomeIcon icon={faDownload} />
+                        Zapisz Raport
                     </span>
                 </button>
             </div>
@@ -32,46 +30,23 @@ const Header = () => {
 };
 
 // Header Styles
-const headerStyle = {
-  background: '#fff',
-  color: '#333',
-  textAlign: 'center',
-  padding: '15px',
-  fontFamily: 'sans-serif',
-  position: 'sticky',
-  top: 0,
-  left: 0,
-  width: '100vw'
-};
 
 const container = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: '0 15px',
     maxWidth: 1200,
     margin: '0 auto',
 };
 
 // Logo Side Styles
-const logoSide = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '15px'
-};
-
-const logoName = {
-    fontSize: 24,
-    textDecoration: 'none',
-    color: '#333',
-    fontWeight: "bold"
-};
-
-const logo = {
-    width: 44,
-    height: 44,
-    backgroundColor: '#ecebec',
-    borderRadius: 15
+const logoImage = {
+    display: 'block',
+    width: '200px',
+    height: '44px',
+    background: "url('/img/logo.png') no-repeat center",
+    backgroundSize: 'contain',
 };
 
 // Buttons Section

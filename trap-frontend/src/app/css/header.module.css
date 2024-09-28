@@ -1,0 +1,49 @@
+.headerStyle {
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    padding: 15px;
+    font-family: 'sans-serif';
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+}
+
+/* Button Container */
+.buttonContainer {
+    display: flex;
+    gap: 15px;
+  }
+  
+  /* Primary Button */
+  .primaryButton {
+    padding: 15px 30px;
+    background-color: #407bff;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .primaryButton:hover {
+    background-color: #3850d9;
+  }
+  
+  /* Secondary Button */
+  .secondaryButton {
+    padding: 15px 30px;
+    background-color: #eef0ff;
+    color: #333;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .secondaryButton:hover {
+    background-color: #dcdfff;
+  }

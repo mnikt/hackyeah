@@ -61,11 +61,11 @@ const keywords = [
   ];
 
   const errors = [
-    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "0:17s" },
-    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:25s" },
-    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "text", timestamp: "0:40s" },
-    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "1:12s" },
-    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:30s" },
+    { origin: "Wszystkie usługi resortu", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "0:17s" },
+    { origin: "zdiagnozowało przyczynę", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:25s" },
+    { origin: "Sytuacja była spowodowana problemami technicznymi.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "text", timestamp: "0:40s" },
+    { origin: "i rozwiązało problem.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "1:12s" },
+    { origin: "a dane podatników niezagrożone.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:30s" },
   ];
   
 
@@ -75,13 +75,13 @@ const PageContent = () => {
         <div style={videoColumn}>
             <VideoPanel videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
             <TimelinePanel textDictionary={textDictionary} />
-            <VidInfoPanel videoDuration="31" videoSize="76" date="14.10.2024" textWordCount="473" textSize="53" />
+            <ErrorsPanel errors={errors} />
         </div>
 
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
 
-            <ErrorsPanel errors={errors} />
+            <VidInfoPanel videoDuration="0:31" videoSize="76" date="14.10.2024" textWordCount="473" textSize="53" />
 
             <SummaryPanel summary="Na podstawie załączonego zrzutu ekranu, analiza tekstu oraz wideo dotyczy sprawdzenia treści pod kątem błędów językowych, złożoności tekstu i proponowanych sugestii poprawy. Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia. Znaleziono 21 błędów, podzielonych na różne kategorie (np. 4 błędy merytoryczne, 11 stylowych i 6 innych). System wyświetla również sugestie dotyczące doboru słów, fraz kluczowych oraz zawiera pytania diagnostyczne dotyczące tekstu. Cały proces opiera się na analizie audiowizualnej oraz tekstowej, wspieranej przez automatyczne sugestie poprawy i ocenę czytelności." />
         </div>

@@ -1,10 +1,20 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'; // Icons for expand/collapse
 import '../../css/keywordPanel.css'; // Custom CSS for styling
 
-const WordSuggestionPanel = ({ keywords, isOpen, togglePanel }) => {
+const WordSuggestionPanel = ({ keywords }) => {
+    // State to manage if the panel is open or closed
+    const [isOpen, setIsOpen] = useState(false);
+
+    // Function to toggle the panel
+    const togglePanel = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
             {/* Header Section with toggle functionality */}
@@ -34,8 +44,13 @@ const WordSuggestionPanel = ({ keywords, isOpen, togglePanel }) => {
 // Styles
 const cardStyle = {
     padding: '15px',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
+    borderRadius: '15px',
+    backgroundColor: '#f4f4f4',
+    width: '100%',
+    maxWidth: '800px',
+    margin: 'auto',
+    boxShadow: 'none',
+    overflow: 'hidden',
     cursor: 'pointer', // Makes the header clickable
     transition: 'max-height 0.3s ease-in-out', // Smooth transition
 };

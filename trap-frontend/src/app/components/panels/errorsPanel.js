@@ -51,7 +51,10 @@ const ErrorsPanel = ({ errors }) => {
           {filteredErrors.map((error, index) => (
             <div key={index} style={errorItem}>
               <div style={timestamp}>{error.timestamp}</div>
-              <div style={errorText}>{error.text}</div>
+              <div style={content}>
+              <div style={origin}>{error.origin}</div>
+                <div style={errorText}>{error.text}</div>
+              </div>
             </div>
           ))}
         </div>
@@ -63,8 +66,13 @@ const ErrorsPanel = ({ errors }) => {
 // Styles
 const cardStyle = {
   padding: '15px',
-  borderRadius: '8px',
+  borderRadius: '15px',
   backgroundColor: '#f4f4f4',
+  width: '100%',
+  maxWidth: '800px',
+  margin: 'auto',
+  boxShadow: 'none',
+  overflow: 'hidden' 
 };
 
 const iconStyle = {
@@ -97,6 +105,19 @@ const timestamp = {
   color: '#757575',
   fontSize: '14px',
 };
+
+const content = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  flexDirection: 'column'
+}
+
+const origin = {
+  fontSize: '14px',
+  color: '#407bff',
+  fontWeight: "bold"
+}
 
 const errorText = {
   fontSize: '14px',
