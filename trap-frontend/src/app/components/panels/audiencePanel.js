@@ -2,19 +2,6 @@ import React from 'react';
 import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint components
 import Image from 'next/image'; // For handling images in Next.js
 
-const educationLevel = {
-    PRIMARY: { title: 'Podstawowe', emoji: '📚' },
-    SECONDARY: { title: 'Średnie', emoji: '🎒' },
-    HIGHER: { title: 'Wyższe', emoji: '🎓' }
-  };
-  
-  // Define the "knowledgeLevel" enum
-  const knowledgeLevel = {
-    GENERAL: { title: 'Ogólne', emoji: '📝' },
-    ACADEMIC: { title: 'Akademickie', emoji: '🧑‍🔬' },
-    BUSINESS: { title: 'Biznesowe', emoji: '💼' },
-  };
-
 const AudiencePanel = ({ title, icon, label, icon2, label2 }) => {
     return (
         <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>

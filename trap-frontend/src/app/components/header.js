@@ -45,7 +45,7 @@ const logoImage = {
     display: 'block',
     width: '200px',
     height: '44px',
-    background: "url('/img/logo.png') no-repeat center",
+    background: "url('/img/logo.png') no-repeat left center",
     backgroundSize: 'contain',
 };
 

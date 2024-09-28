@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint components
-import '../../css/keywordPanel.css'; // Custom CSS for styling
 
 const KeywordPanel = ({ keywords }) => {
   return (
@@ -58,7 +57,7 @@ const keywordsContainer = {
   const keywordBox = {
     padding: '8px 12px',
     backgroundColor: '#e0e0e0',
-    borderRadius: '8px',
+    borderRadius: '15px',
     fontSize: '12px',
     color: 'black'
   }

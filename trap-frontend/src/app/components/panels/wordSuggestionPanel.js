@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'; // Icons for expand/collapse
-import '../../css/keywordPanel.css'; // Custom CSS for styling
 
 const WordSuggestionPanel = ({ keywords }) => {
     // State to manage if the panel is open or closed
@@ -98,7 +97,7 @@ const keywordsContainer = {
 const keywordBox = {
     padding: '8px 12px',
     backgroundColor: '#e0e0e0',
-    borderRadius: '8px',
+    borderRadius: '15px',
     fontSize: '12px',
     color: 'black',
 };

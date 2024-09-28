@@ -11,7 +11,7 @@ const QuestionsPanel = ({ questions }) => {
         <div style={questionsContainer}>
           {questions.map((question, index) => (
             <div key={index} style={questionStyle}>
-                <div style={numberStyle}>{index+1}.</div>
+                <div style={numberStyle}>{index+1}</div>
                 <div style={questionText}>{question}</div> {/* Question text */}
             </div>
           ))}
@@ -56,9 +56,14 @@ const numberStyle = {
   color: '#407BFF',
   fontSize: '18px',
   fontWeight: 'bold',
-  maxWidth: '55px',
-  width: '55px',
-  textAlign: 'center'
+  minWidth: '44px',
+  width: '44px',
+  minHeight: '44px',
+  height: '44px',
+  textAlign: 'center',
+  lineHeight: '44px',
+  backgroundColor: 'rgba(71, 123, 255, 20%)',
+  borderRadius: '15px'
 };
 
 const questionText = {
