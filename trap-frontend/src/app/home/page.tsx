@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image'; // Next.js image component for better optimization
 import styles from '../css/Home.module.css'; // Import custom CSS
@@ -35,7 +37,7 @@ export default function Home() {
         </div>
 
         {/* Arrow Section */}
-        <div className={styles.scrollArrow}>
+        <div className={styles.scrollArrow} onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
          <FontAwesomeIcon icon={faChevronDown} />
          </div>
       </div>
