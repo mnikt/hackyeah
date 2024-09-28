@@ -4,7 +4,7 @@ import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint compone
 const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize }) => {
   return (
     <div>
-      <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
         {/* Video Info Section */}
         <div style={infoRow}>
           <div style={sectionStyle}>

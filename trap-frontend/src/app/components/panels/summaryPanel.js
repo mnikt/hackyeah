@@ -4,7 +4,7 @@ import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint compone
 const SummaryPanel = ({ summary }) => {
   return (
     <div>
-      <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
         {/* Header Section */}
         <div style={header}>
           <h3>Podsumowanie</h3>

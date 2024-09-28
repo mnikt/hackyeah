@@ -8,7 +8,7 @@ const FoundErrorsPanel = ({ videoErrors, audioErrors, textErrors }) => {
 
     return (
         <div>
-            <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
+            <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
                 {/* Header with total errors */}
                 <div style={header}>
                     <h3>Znalezione Błędy</h3>

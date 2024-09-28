@@ -1,0 +1,200 @@
+.container {
+    display: block;
+    height: 100vh; /* Full viewport height */
+    background-color: #fff;
+
+    background-color:hsla(0,0%,100%,1);
+  }
+  
+.header {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Translucent white background */
+    backdrop-filter: blur(10px); /* Blurs the background layer underneath */
+    -webkit-backdrop-filter: blur(10px); /* For better support in Webkit browsers */
+}
+
+.logoImage {
+    display: block;
+    width: 400px; /* Set the width you want the logo to have */
+    height: 80px; /* Restrict the height to 100px */
+    background: url("/img/logo.png") no-repeat center; /* Position the logo */
+    background-size: contain; /* Ensures the logo scales within the div */
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    height: calc(100vh - 25px);
+    padding: 0 50px; /* Add some padding */
+    position: relative;
+    background-image:
+radial-gradient(at 2% 2%, hsla(221,100%,62%,0.5) 0px, transparent 50%),
+radial-gradient(at 2% 92%, hsla(250,95%,62%,0.5) 0px, transparent 50%),
+radial-gradient(at 96% 9%, hsla(221,100%,62%,0.5) 0px, transparent 50%),
+radial-gradient(at 59% 36%, hsla(189,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 42% 67%, hsla(355,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 64% 63%, hsla(340,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 32% 31%, hsla(19,0%,100%,1) 0px, transparent 50%),
+radial-gradient(at 95% 95%, hsla(242,100%,70%,0.5) 0px, transparent 20%),
+radial-gradient(at 60% 82%, hsla(343,100%,76%,0.2) 0px, transparent 50%);
+}
+
+  /* Left column for the image */
+  .leftColumn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Right column for the text and buttons */
+  .rightColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  /* Title and Subtitle */
+  .title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+    color: #8f8f8f;
+    margin-bottom: 30px;
+    margin-top: 5px;
+  }
+  
+  /* Button Container */
+  .buttonContainer {
+    display: flex;
+    gap: 20px;
+  }
+  
+  /* Primary Button */
+  .primaryButton {
+    padding: 15px 30px;
+    background-color: #407bff;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .primaryButton:hover {
+    background-color: #3850d9;
+  }
+  
+  /* Secondary Button */
+  .secondaryButton {
+    padding: 15px 30px;
+    background-color: #eef0ff;
+    color: #333;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .secondaryButton:hover {
+    background-color: #dcdfff;
+  }
+
+
+  .processSection {
+    background-color: #f4f4f4; /* Light gray background */
+    padding: 100px 0; /* Padding around the section */
+    text-align: center; /* Center-align the content */
+  }
+  
+  /* Process Title */
+  .processTitle {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 40px;
+  }
+  
+  /* Cards Container */
+  .processCards {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px; /* Spacing between the cards */
+
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  /* Individual Cards */
+  .card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 280px;
+    height: 300px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Card Image Placeholder */
+  .cardImage {
+    background-color: #407bff; /* Blue color */
+    width: 100%;
+    height: 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Card Title */
+  .cardTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Card Text */
+  .cardText {
+    font-size: 14px;
+    color: #8f8f8f;
+  }
+
+  .scrollArrow {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    transform: translateX(-50%);
+    font-size: 40px;
+    color: #407bff;
+    cursor: pointer;
+    animation: bounce 1.5s infinite; /* Continuous bouncing animation */
+  }
+  
+  /* Bouncing animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -20px); /* Move the arrow up */
+    }
+  }

@@ -6,6 +6,9 @@ import SummaryPanel from "./panels/summaryPanel";
 import VidInfoPanel from "./panels/vidInfoPanel";
 import TimelinePanel from "./panels/timelinePanel";
 import VideoPanel from "./panels/VideoPanel";
+import WordSuggestionPanel from "./panels/wordSuggestionPanel";
+import QuestionsPanel from "./panels/questionsPanel";
+import ErrorsPanel from "./panels/errorsPanel";
 
 const keywords = [
     "cooked soup", 
@@ -44,6 +47,28 @@ const keywords = [
     ]
   };
 
+  const questions = [
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
+    "Typowy błąd byłby napisany tutaj z sugestią jakąś."
+  ];
+
+  const errors = [
+    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "0:17s" },
+    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:25s" },
+    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "text", timestamp: "0:40s" },
+    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "1:12s" },
+    { text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:30s" },
+  ];
+  
+
 const PageContent = () => {
   return (
     <main style={container}>
@@ -56,13 +81,19 @@ const PageContent = () => {
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
 
+            <ErrorsPanel errors={errors} />
+
             <SummaryPanel summary="Na podstawie załączonego zrzutu ekranu, analiza tekstu oraz wideo dotyczy sprawdzenia treści pod kątem błędów językowych, złożoności tekstu i proponowanych sugestii poprawy. Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia. Znaleziono 21 błędów, podzielonych na różne kategorie (np. 4 błędy merytoryczne, 11 stylowych i 6 innych). System wyświetla również sugestie dotyczące doboru słów, fraz kluczowych oraz zawiera pytania diagnostyczne dotyczące tekstu. Cały proces opiera się na analizie audiowizualnej oraz tekstowej, wspieranej przez automatyczne sugestie poprawy i ocenę czytelności." />
         </div>
 
         <div style={questionColumn}>
             <MglistaPanel score={33}/>
 
+            <WordSuggestionPanel keywords={keywords} />
+
             <KeywordPanel keywords={keywords} />
+
+            <QuestionsPanel questions={questions} />
         </div>
     </main>
   );
@@ -75,7 +106,7 @@ const container = {
     alignItems: 'flex-start',
     justifyContent: 'center',
     gap: '15px',
-    paddingTop: '15px'
+    padding: '15px 15px 30px 15px'
 }
 
 const videoColumn = {

@@ -8,3 +8,7 @@
   min-height: 100vh;
   background-color: #fff;
 }
+
+.panel-header button:hover {
+  color: #2f5ad3; /* Darker blue on hover */
+}

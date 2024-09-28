@@ -5,7 +5,7 @@ import '../../css/keywordPanel.css'; // Custom CSS for styling
 const KeywordPanel = ({ keywords }) => {
   return (
     <div>
-      <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
         {/* Header Section */}
         <div style={header}>
           <h3>Frazy i Słowa Kluczowe</h3>
