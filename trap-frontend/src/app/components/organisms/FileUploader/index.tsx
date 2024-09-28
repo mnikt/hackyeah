@@ -25,7 +25,7 @@ const FileUploader = () => {
 
 
     try {
-      const response = await fetch("http://localhost:4000/api", {
+      const response = await fetch("http://34.118.88.52:8000/api", {
         method: "POST",
         body: formData,
       });
