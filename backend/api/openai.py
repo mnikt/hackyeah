@@ -3,6 +3,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 from openai import OpenAI
 from api.secrets import OPENAI_API_KEY
 
+
 class OpenAIAPI:
     def __init__(self):
         self.api_key = OPENAI_API_KEY
@@ -22,9 +23,9 @@ class OpenAIAPI:
 
         return completion.choices[0].message.content
 
-    def get_file_transcription(self):
-        OpenAIAPI.video_to_audio()
-        with open("audio.mp3", "rb") as f:
+    def get_file_transcription(self, file):
+        file = OpenAIAPI.video_to_audio(file)
+        with open(file, "rb") as f:
             transcription = self.client.audio.transcriptions.create(
                 model="whisper-1",
                 file=f,
@@ -38,7 +39,8 @@ class OpenAIAPI:
         return self._make_chat_request("Hello chat!")
 
     @staticmethod
-    def video_to_audio():
+    def video_to_audio(file):
         # with open("audio.mp3", "wb+") as output_file:
-        video = VideoFileClip("/home/mrcn/Downloads/HY_2024_film_01.mp4")
-        video.audio.write_audiofile("audio.mp3", codec="mp3")
+        video = VideoFileClip(file)
+        video.audio.write_audiofile(f'{file}.mp3', codec="mp3")
+        return f'{file}.mp3'
