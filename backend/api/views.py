@@ -10,12 +10,18 @@ from api.vertex import VertexAIAPI
 def api(request):
     filenames = [file.file.file.name for file in request.FILES.values()]
 
-    openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
-    print(openai_responses)
+    # openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
+    # print(openai_responses)
     
     vertex_responses = [VertexAIAPI().generate_findings(filename) for filename in filenames]
-    print(vertex_responses)
 
 
-    return HttpResponse(content=json.dumps({"status": "OK", "chat": OpenAIAPI().hello(), "transcriptions": vertex_responses}),
-                        content_type="application/json")
+    return HttpResponse(
+        content=json.dumps(
+            {
+                "status": "OK", 
+                "errors": vertex_responses
+            }
+        ),
+        content_type="application/json"
+    )
