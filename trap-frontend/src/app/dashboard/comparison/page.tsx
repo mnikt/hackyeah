@@ -95,6 +95,7 @@ const ComparisonPage = () => {
         <Card style={titleStyle}>
           <h1 style={title}>Porównaj nagrania</h1>
           <p style={subtitle}>Możliwe jest dodanie tylko dwóch filmów do porówniania. Możliwy czas oczekiwania na odpowiedź może być dłuższy niż przy zwykłej analizie.</p>
+          <p style={subtitle}>Aby dodać dwa pliki naraz naley wcisnąć control/cmd</p>
           <FileUploader multipleUpload={true} onSubmit={handleSubmit} />
         </Card>
 
