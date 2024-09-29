@@ -33,9 +33,9 @@ const timestampStyle = {
 }
 
 const scrollableContent = {
-  maxHeight: '200px', // Limit height to approx. 3 lines
+  maxHeight: '300px', // Limit height to approx. 3 lines
   overflowY: 'auto',  // Enable vertical scrolling when content exceeds max height
-  padding: '0',       // Set padding to 0 for scrollable content
+  padding: '10px',       // Set padding to 0 for scrollable content
   margin: '-20px',    // Apply negative margin to eliminate card's default padding effect
 };
 
