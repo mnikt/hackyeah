@@ -11,7 +11,7 @@ const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => 
             <h4 style={sectionTitle}>Plik Wideo</h4>
             <div style={infoContainer}>
               <span style={highlight}>{videoDuration}</span>
-              <span style={unit}>czas</span>
+              <span style={unit}>s</span>
               <span style={divider}>|</span>
               <span style={highlight}>{videoSize}</span>
               <span style={unit}>mb</span>
@@ -25,8 +25,6 @@ const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => 
               <span style={highlight}>{textWordCount}</span>
               <span style={unit}>słów</span>
               <span style={divider}>|</span>
-              <span style={highlight}>{textSize}</span>
-              <span style={unit}>mb</span>
             </div>
           </div>
         </div>

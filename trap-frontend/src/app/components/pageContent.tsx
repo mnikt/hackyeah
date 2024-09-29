@@ -58,6 +58,7 @@ const PageContent = ({ targetRef }) => {
   const [stats, setStats] = useState<Stats>();
   const [semantics, setSemantics] = useState<Semantics>();
   const [fileName, setFileName] = useState<string>();
+  const [score, setScore] = useState<number>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
@@ -68,7 +69,10 @@ const PageContent = ({ targetRef }) => {
       const keys = Object.keys(timelinedErrors);
 
       const errors: ErrorsTimeline = [];
+      let errorsNum = 0;
       keys.forEach(key => {
+        errorsNum += timelinedErrors[key].length;
+      
         const timelinedError: TimelinedError = {
           errorName: key,
           derivedErrors: timelinedErrors[key] as DerivedError[],
@@ -90,6 +94,9 @@ const PageContent = ({ targetRef }) => {
         wordCount: parsedData.word_count,
       });
       setSemantics(parsedData.semantic_analysis);
+
+      let score = Math.min(Math.random() * 10 + errorsNum * 7, 86);
+      setScore(score);
     }
   }, []);
 
@@ -124,7 +131,8 @@ const PageContent = ({ targetRef }) => {
               !semantics ?
               <Spinner /> : <SemanticsPanel voice={semantics.voice} expression={semantics.expression} impact={semantics.impact} integrity={semantics.integrity} />
             }
-            <MglistaPanel score={33}/>
+
+            {!score ? <Spinner /> : <MglistaPanel score={score}/>}
 
             {!educationLevel || !knowledgeLevel ? 
               <Spinner /> : 
