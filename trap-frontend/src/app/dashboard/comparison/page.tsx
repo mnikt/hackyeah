@@ -4,7 +4,8 @@ import Header from "@/app/components/header";
 import FileUploader from "@/app/components/organisms/FileUploader";
 import { Card } from "@blueprintjs/core";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import generatePDF from 'react-to-pdf';
 
 type TimestampedError = {
   timestamp: string;
@@ -84,33 +85,23 @@ const ComparisonPage = () => {
     }
   };
 
+  const targetRef = useRef(null);
 
   return (
     <div style={pageStyle}>
-      <Header />
-      <div style={titleStyle}>
-        <h1>Porównaj nagrania</h1>
-        <p>Możliwe jest dodanie tylko dwóch filmów do porówniania. Możliwy czas oczekiwania na odpowiedź może być dłuższy niż przy zwykłej analizie</p>
-      </div>
-      <Card style={uploadContainerStyle}>
-        <h3>Dodaj filmy do porówniania</h3>
-        <FileUploader multipleUpload={true} onSubmit={handleSubmit} />
-      </Card>
-      {comparisonData?.length && (
-        <div style={comparisonContainerStyle}>
-          <Card style={comparisonReportContainerStyle}>
-            {comparisonData[0].map(dataForFile => (
-              <div>
-                <h4>{dataForFile.title}</h4>
-                <div>
-                  <p>{dataForFile.errors[0].timestamp}</p>
-                  <p>{dataForFile.errors[0].description}</p>
-                </div>
-              </div>
-            ))}
-          </Card>
-          <Card style={comparisonReportContainerStyle}>
-            {comparisonData[1].map(dataForFile => (
+      <Header action={() => generatePDF(targetRef, {filename: 'raport.pdf'})} />
+
+      <div style={container} ref={targetRef}>
+        <Card style={titleStyle}>
+          <h1 style={title}>Porównaj nagrania</h1>
+          <p style={subtitle}>Możliwe jest dodanie tylko dwóch filmów do porówniania. Możliwy czas oczekiwania na odpowiedź może być dłuższy niż przy zwykłej analizie.</p>
+          <FileUploader multipleUpload={true} onSubmit={handleSubmit} />
+        </Card>
+
+        {comparisonData?.length && (
+          <div style={comparisonContainerStyle}>
+            <Card style={comparisonReportContainerStyle}>
+              {comparisonData[0].map(dataForFile => (
                 <div>
                   <h4>{dataForFile.title}</h4>
                   <div>
@@ -119,26 +110,62 @@ const ComparisonPage = () => {
                   </div>
                 </div>
               ))}
-          </Card>
-        </div>
-      )}
+            </Card>
+            <Card style={comparisonReportContainerStyle}>
+              {comparisonData[1].map(dataForFile => (
+                  <div>
+                    <h4>{dataForFile.title}</h4>
+                    <div>
+                      <p>{dataForFile.errors[0].timestamp}</p>
+                      <p>{dataForFile.errors[0].description}</p>
+                    </div>
+                  </div>
+                ))}
+            </Card>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 const pageStyle = {
-  padding: '10px'
+  fontFamily: 'sans-serif',
+  margin: 0,
+  boxSizing: 'border-box',
+  maxWidth: '100%',
+  maxHeight: '100%',
+  minWidth: '100vw',
+  minHeight: '100vh',
+  backgroundColor: '#fff'
+}
+
+const container = {
+  maxWidth: '1200px',
+  margin: '0 auto',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  gap: '15px',
+  padding: '15px 15px 30px 15px'
 }
 
 const titleStyle = {
-  marginTop: '40px',
-  marginBottom: '20px',
-  marginLeft: '10px',
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px'
 }
 
-const uploadContainerStyle = {
-  marginLeft: '10px',
-  width: '500px',
+const title = {
+  fontSize: '28px',
+  fontWeight: 'bold'
+}
+
+const subtitle = {
+  fontSize: '16px',
+  fontWeight: 'regular'
 }
 
 const comparisonContainerStyle = {

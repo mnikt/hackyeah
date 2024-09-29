@@ -48,7 +48,7 @@ type Stats = {
   wordCount: number;
 };
 
-const PageContent = () => {
+const PageContent = ({ targetRef }) => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
   const [educationLevel, setEducationLevel] = useState<'podstawowe' | 'średnie' | 'wyższe'>();
   const [knowledgeLevel, setKnowledgeLevel] = useState<'ogólne' | 'akademickie' | 'biznesowe'>();
@@ -104,7 +104,7 @@ const PageContent = () => {
   }, []);
 
   return (
-    <main style={container}>
+    <main style={container} ref={targetRef}>
       <div style={videoColumn}>
         {
           !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
@@ -112,8 +112,7 @@ const PageContent = () => {
         {
           !transcriptions ? <Spinner /> : <TranscriptionsPanel transcriptions={transcriptions} />
         }
-          
-        </div>
+      </div>
 
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
@@ -145,6 +144,8 @@ const PageContent = () => {
 
             <WordSuggestionPanel keywords={keywords} />
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
+
+            <TranslationPanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
         </div>
     </main>
   );
