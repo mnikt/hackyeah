@@ -113,7 +113,7 @@ const PageContent = ({ targetRef }) => {
   console.log('errorsTimeline: ', errorsTimeline);
 
   return (
-    <main style={container}>
+    <main style={container} ref={targetRef}>
       <div style={videoColumn}>
         {
           !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
@@ -121,8 +121,7 @@ const PageContent = ({ targetRef }) => {
         {
           !transcriptions ? <Spinner /> : <TranscriptionsPanel transcriptions={transcriptions} />
         }
-          
-        </div>
+      </div>
 
         <div style={errorColumn}>
             {!errorsTimeline ? <Spinner /> : <FoundErrorsPanel errorsTimeline={errorsTimeline} />}
