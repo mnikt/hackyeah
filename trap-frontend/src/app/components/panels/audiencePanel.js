@@ -17,7 +17,7 @@ const educationLevel = {
 
 const AudiencePanel = ({ title, icon, label, icon2, label2 }) => {
     return (
-        <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
+        <Card interactive={false} elevation={Elevation.ONE}>
             {/* Header with total errors */}
             <div style={header}>
                 <h3>{title}</h3>
@@ -40,19 +40,6 @@ const AudiencePanel = ({ title, icon, label, icon2, label2 }) => {
             </div> */}
         </Card>
     );
-};
-
-
-// Styles for the component
-const cardStyle = {
-    padding: '15px',
-    borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden' 
 };
 
 const header = {

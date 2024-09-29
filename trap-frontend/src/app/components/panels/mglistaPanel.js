@@ -7,7 +7,7 @@ import RainbowSlider from '../rainbowSlider';
 const MglistaPanel = ({ score }) => {
     return (
         <div>
-            <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
+            <Card interactive={false} elevation={Elevation.ONE}>
                 {/* Header Section */}
                 <div style={header}>
                     <h3>Skala Mglistości</h3>
@@ -20,17 +20,6 @@ const MglistaPanel = ({ score }) => {
         </div>
     );
 };
-
-const cardStyle = {
-    padding: '15px',
-    borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden'
-  };
 
 const header = {
     display: 'flex',

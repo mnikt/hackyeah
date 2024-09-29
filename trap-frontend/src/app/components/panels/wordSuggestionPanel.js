@@ -16,7 +16,7 @@ const WordSuggestionPanel = ({ keywords }) => {
     };
 
     return (
-        <Card interactive={true} elevation={Elevation.TWO} style={cardStyle}>
+        <Card interactive={true} elevation={Elevation.ONE}>
             {/* Header Section with toggle functionality */}
             <div style={header} onClick={togglePanel} className="panel-header">
                 <h3 style={headerText}>Sugestie Doboru Słów</h3>
@@ -39,20 +39,6 @@ const WordSuggestionPanel = ({ keywords }) => {
             )}
         </Card>
     );
-};
-
-// Styles
-const cardStyle = {
-    padding: '15px',
-    borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden',
-    cursor: 'pointer', // Makes the header clickable
-    transition: 'max-height 0.3s ease-in-out', // Smooth transition
 };
 
 const header = {

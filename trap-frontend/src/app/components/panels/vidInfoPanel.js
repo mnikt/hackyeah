@@ -4,7 +4,7 @@ import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint compone
 const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => {
   return (
     <div>
-      <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.ONE}>
         {/* Video Info Section */}
         <div style={infoRow}>
           <div style={sectionStyle}>
@@ -33,18 +33,6 @@ const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => 
       </Card>
     </div>
   );
-};
-
-// Styles for the component
-const cardStyle = {
-  padding: '15px',
-  borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden' 
 };
 
 const infoRow = {

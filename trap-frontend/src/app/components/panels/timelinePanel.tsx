@@ -19,7 +19,7 @@ type TimelinePanelProps = {
 
 const TimelinePanel: React.FC<TimelinePanelProps> = ({ timelinedErrors }) => {
   return (
-    <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
+    <Card interactive={false} elevation={Elevation.ONE}>
       <div style={scrollableContent}>
           <div style={contentPadding}>
             {timelinedErrors && timelinedErrors.map((err, index) => (
@@ -55,19 +55,6 @@ const timestampStyle = {
 const derivedErrorStyle = {
   display: 'flex',
 }
-
-// Styles
-const cardStyle = {
-  boxSizing: 'border-box',
-  // padding: '10px', // Eliminate padding inside the card
-  borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden' 
-};
 
 const scrollableContent = {
   maxHeight: '180px', // Limit height to approx. 3 lines

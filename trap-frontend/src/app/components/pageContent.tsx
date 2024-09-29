@@ -13,6 +13,7 @@ import QuestionsPanel from "./panels/questionsPanel";
 // import ErrorsPanel from "./panels/errorsPanel";
 import AudiencePanel from "./panels/audiencePanel";
 import { Spinner } from "@blueprintjs/core";
+import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
 
   const educationLevelMap = {
     PRIMARY: { title: 'Podstawowe', emoji: '📚' },
@@ -45,7 +46,6 @@ type Stats = {
   score: number;
   wordCount: number;
 };
-  
 
 const PageContent = () => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
@@ -55,6 +55,7 @@ const PageContent = () => {
   const [questions, setQuestions] = useState<Array<string>>();
   const [keywords, setKeywords] = useState<Array<string>>();
   const [stats, setStats] = useState<Stats>();
+  const [semantics, setSemantics] = useState<Semantics>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
@@ -85,6 +86,7 @@ const PageContent = () => {
         score: parsedData.overall_score,
         wordCount: parsedData.word_count,
       });
+      setSemantics(parsedData.semantic_analysis);
     }
   }, []);
 
@@ -106,6 +108,10 @@ const PageContent = () => {
             {!stats ? 
               <Spinner /> :
               <VidInfoPanel videoDuration={stats.duration} videoSize={stats.size} textWordCount={stats.wordCount} textSize={"0"} />
+            }
+            {
+              !semantics ?
+              <Spinner /> : <SemanticsPanel voice={semantics.voice} expression={semantics.expression} impact={semantics.impact} integrity={semantics.integrity} />
             }
             <MglistaPanel score={33}/>
 

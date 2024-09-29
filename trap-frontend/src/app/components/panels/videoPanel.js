@@ -4,7 +4,7 @@ import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint compone
 const VideoPanel = ({ videoSrc }) => {
   return (
     <div>
-      <Card interactive={false} elevation={Elevation.ONE} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.ONE}>
         <video controls style={videoStyle}>
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
@@ -13,18 +13,6 @@ const VideoPanel = ({ videoSrc }) => {
     </div>
   );
 };
-
-// Styles for the component
-const cardStyle = {
-    padding: '0', // Remove padding
-    borderRadius: '15px',
-    backgroundColor: '#f4f4f4',
-    width: '100%',
-    maxWidth: '800px',
-    margin: 'auto',
-    boxShadow: 'none',
-    overflow: 'hidden' 
-  };
 
 const videoStyle = {
     display: 'block',
