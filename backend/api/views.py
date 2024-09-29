@@ -14,6 +14,12 @@ def api(request):
     filenames = [file.file.file.name for file in request.FILES.values()]
     sizes = [file.size for file in request.FILES.values()]
     filename = filenames[0]
+    for file in request.FILES.values():
+        with open(f'videos/{file.name}', 'wb+') as destination:
+            destination.write(file.read())
+
+    sizes = [file.size for file in request.FILES.values()]
+    filename = filenames[0]
 
     openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
     print(openai_responses)
@@ -21,19 +27,14 @@ def api(request):
     encoded_video = base64.b64encode(open(filenames[0], "rb").read()).decode("utf-8")
     timelined_errors = VertexAIAPI().generate_timestamped_errors(encoded_video)
     semantical_analysis = VertexAIAPI().generate_sematical_analysis(encoded_video)
+    timelined_errors = VertexAIAPI().generate_findings(filenames[0])
 
     video = VideoFileClip(filename)
 
-    transcription_data = OpenAIAPI().get_file_transcription(video)
-    transcription_data = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
+    # transcription_data = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
 
-    errors = [
-        {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "video", 'timestamp': "0:17s"},
-        {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "audio", 'timestamp': "0:25s"},
-        {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "text", 'timestamp': "0:40s"},
-        {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "video", 'timestamp': "1:12s"},
-        {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "audio", 'timestamp': "0:30s"},
-    ]
+    transcription_data = OpenAIAPI().get_file_transcription(video)
+
     overall_score = 50
     video_duration = int(video.duration)
     video_size = int(sizes[0] / 1024 / 1024)
