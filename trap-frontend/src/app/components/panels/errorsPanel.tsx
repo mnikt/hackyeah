@@ -21,7 +21,8 @@ type ErrorsPanelsProps = {
   timelinedErrors: ErrorsTimeline | undefined;
 }
 
-const ErrorsPanel: React.FC<ErrorsPanelsProps> = ({ timelinedErrors }) => {
+{/* INTERACTIVE CHART: selected bar determines video/audio/text */}
+const ErrorsPanel: React.FC<ErrorsPanelsProps> = ({ timelinedErrors, selectedBar }) => {
   const [selectedTab, setSelectedTab] = useState('video'); // Default tab is 'video'
 
   // Filter errors based on the selected tab (tag)

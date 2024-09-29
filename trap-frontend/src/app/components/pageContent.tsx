@@ -93,6 +93,12 @@ const PageContent = ({ targetRef }) => {
     }
   }, []);
 
+  const [selectedBar, setSelectedBar] = useState(null); // State to manage selected bar
+
+  const handleBarSelect = (barType) => {
+      setSelectedBar(selectedBar === barType ? null : barType); // Toggle selection
+  };
+
   return (
     <main style={container} ref={targetRef}>
         <div style={videoColumn}>
@@ -105,7 +111,7 @@ const PageContent = ({ targetRef }) => {
         </div>
 
         <div style={errorColumn}>
-            <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
+            <FoundErrorsPanel errors={errorsTimeline} selectedBar={selectedBar} onBarSelect={handleBarSelect} />
             {!summary ? <Spinner /> : <SummaryPanel summary={summary} />}
             {!questions ? <Spinner /> : <QuestionsPanel questions={questions} />}
         </div>
