@@ -18,15 +18,15 @@ def api(request):
 
     sizes = [file.size for file in request.FILES.values()]
     filename = filenames[0]
+    video = VideoFileClip(filename)
 
-    openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
-    print(openai_responses)
+    # openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
+    # print(openai_responses)
     
     encoded_video = base64.b64encode(open(filenames[0], "rb").read()).decode("utf-8")
     timelined_errors = VertexAIAPI().generate_timestamped_errors(encoded_video)
     semantical_analysis = VertexAIAPI().generate_sematical_analysis(encoded_video)
 
-    video = VideoFileClip(filename)
 
     # transcription_data = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
 
