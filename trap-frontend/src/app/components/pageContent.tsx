@@ -16,16 +16,16 @@ import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
 
   const educationLevelMap = {
-    PRIMARY: { title: 'Podstawowe', emoji: '📚' },
-    SECONDARY: { title: 'Średnie', emoji: '🎒' },
-    HIGHER: { title: 'Wyższe', emoji: '🎓' }
+    podstawowe: { title: 'Podstawowe', emoji: '📚' },
+    średnie: { title: 'Średnie', emoji: '🎒' },
+    wyższe: { title: 'Wyższe', emoji: '🎓' }
   };
   
   // Define the "knowledgeLevel" enum
   const knowledgeLevelMap = {
-    GENERAL: { title: 'Ogólne', emoji: '📝' },
-    ACADEMIC: { title: 'Akademickie', emoji: '🧑‍🔬' },
-    BUSINESS: { title: 'Biznesowe', emoji: '💼' },
+    ogólne: { title: 'Ogólne', emoji: '📝' },
+    akademickie: { title: 'Akademickie', emoji: '🧑‍🔬' },
+    biznesowe: { title: 'Biznesowe', emoji: '💼' },
   };
 
 type DerivedError = {
