@@ -1,13 +1,17 @@
 'use client';
 
 import { FormEvent, FormEventHandler, useState } from "react";
-import { Button, FileInput } from "@blueprintjs/core";
+import { Button, FileInput, Spinner } from "@blueprintjs/core";
 import AddedFileLabel from "../../molecules/AddedFileLabel";
+import { useRouter } from "next/navigation";
 
 const FileUploader = () => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>();
   const [addedFiles, setAddedFiles] = useState<Array<File>>([]);
 
-  console.log('addedFiles: ', addedFiles)
+
+  const router = useRouter();
 
   const handleInputChange: FormEventHandler<HTMLInputElement> = (event) => {
     const files = event.target.files as FileList;
@@ -25,14 +29,22 @@ const FileUploader = () => {
 
 
     try {
+      setLoading(true);
       const response = await fetch("http://34.118.88.52:8000/api", {
         method: "POST",
         body: formData,
       });
 
-      console.log('response: ', response);
+      const jsonResponse = await response.json();
+      localStorage.setItem('response', JSON.stringify(jsonResponse));
+
+      router.push('/dashboard');
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(`Wystąpił błąd podczas analizy pliku: ${error ? error.message : ''}`);
       console.error(error);
+
     }
   }
 
@@ -43,18 +55,33 @@ const FileUploader = () => {
 
   return (
     <div>
-      <p>Dodaj jeden lub dwa nagrania</p>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+        { loading ? <Spinner /> :
+        (
         <div>
-          <FileInput inputProps={{multiple: true}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+          <div>
+            <FileInput inputProps={{multiple: false}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+          </div>
+          {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
         </div>
-        <div>
-          <Button type="submit" text="Wrzuć do analizy"/>
+        )
+        }
+        <div style={submitBtnBoxStyle}>
+          <Button disabled={false} type="submit" text="Wrzuć do analizy"/>
+          {error && <p style={errorStyle}>{error}</p>}
         </div>
       </form>
-      {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
     </div>
   )
 };
+
+const submitBtnBoxStyle = {
+  marginTop: '16px',
+}
+
+const errorStyle = {
+  color: 'red',
+  marginTop: '6px',
+}
 
 export default FileUploader;

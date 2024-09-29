@@ -7,7 +7,7 @@ from vertexai.generative_models import GenerativeModel, Part
 from api.secrets import PROJECT_ID
 
 base_instruction = "Wyobraź sobie że jesteś doświadczonym mówcą, który obserwuje i analizuje mówców, którzy są na filmie. Twoim zadaniem jest wykryć błędy w tekście mówionym podczas filmu, gdzie mówca mówi w języku polskim. Przeanalizuj poniższy materiał filmowy i zidentyfikuj błędy opisane poniżej. Dla każdego zidentyfikowanego błędu podaj sygnaturę czasową, kiedy on wystąpił. Zidentyfikuj i opisz szczegółowo: "
-prompt_suffix = "Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'Kategoria': [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]}. Nie podawaj nic innego. Odpowiadaj zawsze według wyżej wymienionej struktury."
+prompt_suffix = "Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'kategoria błędu': [{category: kategoria błędu, timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]}. Nie podawaj nic innego. Odpowiadaj zawsze według wyżej wymienionej struktury."
 
 def build_prompts(prompts):
   enhanced_prompts = []
@@ -56,6 +56,18 @@ Podaj szczegółowe wyjaśnienia dla każdego błędu, wraz z sygnaturą czasow�
 Sformatuj odpowiedź jako struktura JSON w ten sposób: "Kategoria": [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]
 """
 
+semantics_prompt = """
+Proszę przeanalizuj poniższe nagranie pod kątem sentymentu wypowiedzi, uwzględniając ton głosu, ekspresję twarzy oraz wyrażane emocje. Podaj dla wypowiedzi:
+Kategoryzację sentymentu: czy film jest pozytywny, neutralny czy negatywny.
+Zidentyfikowane emocje: jakie emocje są wyrażane (np. radość, smutek, złość).
+Opis tonu głosu: charakterystyka tonu głosu (np. ciepły, chłodny, agresywny, spokojny, podniosły).
+Opis ekspresji twarzy: jakie wyrazy twarzy są widoczne (np. uśmiech, zmarszczone brwi, uniesione brwi, kontakt wzrokowy).
+Wpływ na odbiór: jak sentyment i emocje wpływają na percepcję wypowiedzi przez odbiorcę.
+Spójność z treścią: czy emocje i ton głosu są adekwatne do przekazywanej treści.
+
+Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'voice': opis tonu głosu za pomocą jednego wyrazu, 'expression': opis ekspresji twarzy za pomocą jednego wyrazu, 'impact': wydźwięk wypowiedzi np. pozytywny lub negatywny na podstawie tekstu i ekspresji mówcy, 'integrity': emocje i ton głosu pasują do treści} Nie podawaj nic innego.
+"""
+
 class VertexAIAPI:
   def __init__(self) -> None:    
     vertexai.init(project=PROJECT_ID, location="us-central1")
@@ -72,29 +84,35 @@ class VertexAIAPI:
     logging.debug(f'response: {response.text}')
     return response.text
   
-  def _parse_video_to_base64(self, path: str):
-    # Read the video file in binary mode
-    with open(path, "rb") as file:
-        # Convert the binary content of the file to base64
-      encoded_string = base64.b64encode(file.read())
-
-    return encoded_string
+  def _extract_json(self, content: str):
+    json_start_phrase = '```json'
+    start = content.find(json_start_phrase) + len(json_start_phrase)
+    end = content.find('```', start+1)
+    
+    return json.loads(content[start:end])
   
-  def generate_findings(self, file_path: str):
-    logging.debug(f'file received: {file_path}')
+  def generate_timestamped_errors(self, base64_vid: str):
+    logging.debug(f'file received')
   
-    encoded_video = base64.b64encode(open(file_path, "rb").read()).decode("utf-8")
 
     responses = []
-    for prompt in build_prompts(prompts_raw)[0]:
-      response = self._make_request(encoded_video, prompt)
-      
-      json_start_phrase = '```json'
-      start = response.find(json_start_phrase) + len(json_start_phrase)
-      end = response.find('```', start+1)
-      responses.append(json.loads(response[start:end]))
-    
+    for prompt in [build_prompts(prompts_raw)[0]]:
+      response = self._make_request(base64_vid, prompt)
+      extracted = self._extract_json(response)
+      responses.append(extracted)
     
     print(responses)
     
     return responses
+  
+  def generate_sematical_analysis(self, base64_vid: str):
+    logging.debug('generate_semantical_analysis')
+    
+    response = self._make_request(base64_vid, semantics_prompt)
+    
+    extracted = self._extract_json(response)
+    
+    print('extracted: ', extracted)
+    
+    return extracted
+    
