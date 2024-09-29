@@ -14,38 +14,6 @@ const ErrorsPanel = ({ errors }) => {
   return (
     <div>
       <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
-        {/* Blueprint Tabs with FontAwesome icons */}
-        <Tabs id="error-tabs" onChange={setSelectedTab} selectedTabId={selectedTab}>
-          <Tab
-            id="video"
-            title={
-              <>
-                <FontAwesomeIcon icon={faVideo} style={iconStyle} />
-                <span style={tabText}> Wideo </span>
-              </>
-            }
-          />
-          <Tab
-            id="audio"
-            title={
-              <>
-                <FontAwesomeIcon icon={faVolumeUp} style={iconStyle} />
-                <span style={tabText}> Audio </span>
-              </>
-            }
-          />
-          <Tab
-            id="text"
-            title={
-              <>
-                <FontAwesomeIcon icon={faAlignLeft} style={iconStyle} />
-                <span style={tabText}> Tekst </span>
-              </>
-            }
-          />
-          <Tabs.Expander />
-        </Tabs>
-
         {/* Errors content */}
         <div style={errorsContainer}>
           {filteredErrors.map((error, index) => (
@@ -86,7 +54,6 @@ const tabText = {
 };
 
 const errorsContainer = {
-  marginTop: '15px',
   display: 'flex',
   flexDirection: 'column',
   gap: '10px',

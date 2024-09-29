@@ -24,10 +24,10 @@ const QuestionsPanel = ({ questions }) => {
 // Styles
 const cardStyle = {
   padding: '20px',
-  borderRadius: '15px',
-  backgroundColor: '#f4f4f4',
   width: '100%',
   maxWidth: '800px',
+  borderRadius: '15px',
+  backgroundColor: '#f4f4f4',
   margin: 'auto',
   boxShadow: 'none',
   overflow: 'hidden' 
