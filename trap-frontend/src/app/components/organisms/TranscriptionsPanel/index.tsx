@@ -26,13 +26,6 @@ const TranscriptionsPanel: React.FC<TranscriptionsPanelProps> = ({transcriptions
   );
 }
 
-const errorNameStyle = {
-  fontWeight: 'bold',
-  padding: '2px 4px',
-  fontSize: '18px',
-  marginBottom: '8px',
-}
-
 const timestampStyle = {
   marginRight: '6px',
   fontWeight: 'bold',
@@ -40,7 +33,7 @@ const timestampStyle = {
 }
 
 const scrollableContent = {
-  maxHeight: '180px', // Limit height to approx. 3 lines
+  maxHeight: '200px', // Limit height to approx. 3 lines
   overflowY: 'auto',  // Enable vertical scrolling when content exceeds max height
   padding: '0',       // Set padding to 0 for scrollable content
   margin: '-20px',    // Apply negative margin to eliminate card's default padding effect
