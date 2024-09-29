@@ -38,6 +38,7 @@ def api(request):
     chat = OpenAIAPI().make_chat_request(transcription_data.text)
 
     data = {
+        'chat': chat,
         'keywords': chat.get('slowa_kluczowe'),
         'questions': chat.get('pytania'),
         'education_level': chat.get('ocena_wyksztalcenie'),
