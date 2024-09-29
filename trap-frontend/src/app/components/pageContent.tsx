@@ -65,7 +65,7 @@ const PageContent = ({ targetRef }) => {
     setFileName(localStorage.getItem("fileName") as string);
     if (response) {
       const parsedData = JSON.parse(response);
-      const timelinedErrors = parsedData.timelined_errors[0];
+      const timelinedErrors = parsedData.timelined_errors;
       const keys = Object.keys(timelinedErrors);
 
       const errors: ErrorsTimeline = [];
