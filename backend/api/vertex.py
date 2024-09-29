@@ -98,6 +98,19 @@ class VertexAIAPI:
     logging.debug(f'response: {response.text}')
     return response.text
   
+  def _make_multiple_requests(self, files: list[str], prompt: str):
+    parts = [
+      Part.from_data(
+        data=base64.b64decode(f), mime_type="video/mp4"
+      )
+      for f in files
+    ]
+    
+    response = self.vision_model.generate_content([*parts, prompt])
+    
+    logging.debug(f'response: {response.text}')
+    return response.text
+  
   def _extract_json(self, content: str):
     json_start_phrase = '```json'
     start = content.find(json_start_phrase) + len(json_start_phrase)
@@ -152,3 +165,37 @@ class VertexAIAPI:
     print('extracted: ', extracted)
 
     return extracted
+  
+  def generate_comparison(self, base64_vids: list[str]):
+    logging.debug('generate_compariosn')
+    
+    prompt = """
+      Proszę przeanalizuj i porównaj dwa poniższe nagrania wideo pod kątem występowania następujących błędów. Dla każdego błędu zidentyfikuj jego obecność w obu nagraniach, podaj sygnatury czasowe oraz opisz, w którym nagraniu występuje częściej lub jest bardziej widoczny. Uwzględnij zarówno nagranie, jak i treść transkrypcji.
+      Lista błędów do analizy:
+      a) Przerywniki: użycie zbędnych słów lub dźwięków typu 'yyy', 'eee', które zakłócają płynność wypowiedzi.
+      b) Zbyt szybkie tempo mówienia: sytuacje, w których mówca mówi za szybko, utrudniając zrozumienie.
+      c) Powtórzenia: powtarzanie tych samych słów lub fraz bez potrzeby.
+      d) Zmiana tematu wypowiedzi: niespodziewane lub nieuzasadnione przechodzenie z jednego tematu na inny.
+      e) Za dużo liczb: nadmierne użycie liczb, które mogą przytłaczać odbiorcę.
+      f) Za długie, trudne słowa, zdania: używanie zbyt skomplikowanych wyrażeń lub złożonych zdań, które utrudniają zrozumienie.
+      g) Żargon: używanie terminologii specjalistycznej niezrozumiałej dla szerokiego grona odbiorców.
+      h) Obcy język: nieadekwatne wtrącanie słów lub zwrotów w obcym języku.
+      i) Za długa pauza: niepotrzebne, długie przerwy w mówieniu, które zaburzają rytm wypowiedzi.
+      j) Mówienie głośniej: używanie zbyt wysokiego poziomu głośności, co może być niekomfortowe dla słuchacza.
+      k) Mówienie za cicho lub szeptem: wypowiedź jest zbyt cicha i trudna do usłyszenia.
+      l) Drugi plan – inna osoba na planie: obecność innych osób w tle, które rozpraszają uwagę odbiorcy.
+      m) Odwracanie się, przekręcanie, gestykulacja: nadmierne ruchy i gesty mówcy, które odciągają uwagę od treści.
+      n) Mimika: nieadekwatne wyrazy twarzy lub brak mimiki wpływające na przekaz emocjonalny.
+      o) Nieprawdziwe słowa: używanie słów lub informacji, które są nieprawdziwe lub wprowadzają w błąd.
+      p) Niezgodność wypowiedzi z transkrypcją: różnice między mówioną treścią a dostarczoną transkrypcją.
+      q) Szum: obecność zakłóceń dźwięków
+      Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'nazwa pliku': {'nazwa błędu': {'timestamp': sygnatura czasowa, 'description': 'opis problemu'}}} Nie podawaj nic innego.
+    """
+    
+    response = self._make_multiple_requests(base64_vids, prompt)
+    extracted = self._extract_json(response)
+    
+    print('extracted: ', extracted)
+    
+    return extracted
+    
