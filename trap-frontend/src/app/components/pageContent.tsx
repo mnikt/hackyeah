@@ -114,6 +114,7 @@ const PageContent = ({ targetRef }) => {
         }
       </div>
 
+
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
             {!summary ? <Spinner /> : <SummaryPanel summary={summary} />}
@@ -145,7 +146,7 @@ const PageContent = ({ targetRef }) => {
             <WordSuggestionPanel keywords={keywords} />
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
 
-            <TranslationPanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
+            <TranslatePanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
         </div>
     </main>
   );
