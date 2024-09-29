@@ -11,11 +11,10 @@ from api.vertex import VertexAIAPI
 
 @csrf_exempt
 def api(request):
+    for file in request.FILES.values():
+        with open(f'videos/{file.name}', 'wb+') as destination:
+            destination.write(file.read())
     filenames = [file.file.file.name for file in request.FILES.values()]
-
-    # for file in request.FILES.values():
-    #     with open(f'videos/{file.name}', 'wb+') as destination:
-    #         destination.write(file.read())
 
     sizes = [file.size for file in request.FILES.values()]
     filename = filenames[0]
