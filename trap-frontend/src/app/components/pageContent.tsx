@@ -16,6 +16,7 @@ import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
 import TranslationPanel from "./panels/translatePanel";
 import TranscriptionsPanel, { Transcription } from "./organisms/TranscriptionsPanel";
+import TranslatePanel from "./panels/translatePanel";
 
   const educationLevelMap = {
     podstawowe: { title: 'Podstawowe', emoji: '📚' },
