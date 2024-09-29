@@ -53,7 +53,7 @@ Używanie strony biernej: nadmierne stosowanie strony biernej, np. 'podano', 'ws
 Podaj szczegółowe wyjaśnienia dla każdego błędu, wraz z sygnaturą czasową. Odpowiadaj zawsze według wyżej wymienionej struktury.
 
  
-Sformatuj odpowiedź jako struktura JSON w ten sposób: "Kategoria": [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]
+Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'kategoria błędu': [{category: kategoria błędu, timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]}. Nie podawaj nic innego. Odpowiadaj zawsze według wyżej wymienionej struktury.
 """
 
 prompt_errors = """
@@ -94,6 +94,16 @@ class VertexAIAPI:
     )
     
     response = self.vision_model.generate_content([part,prompt])
+      
+    logging.debug(f'response: {response.text}')
+    return response.text
+  
+  def _make_request_with_multiple_promprs(self, file_encoded: str, promts: list[str]):
+    part = Part.from_data(
+      data=base64.b64decode(file_encoded), mime_type="video/mp4"
+    )
+    
+    response = self.vision_model.generate_content([part, *promts])
       
     logging.debug(f'response: {response.text}')
     return response.text
@@ -144,16 +154,20 @@ class VertexAIAPI:
   def generate_timestamped_errors(self, base64_vid: str):
     logging.debug(f'file received')
 
+    # responses = []
+    # for prompt in [build_prompts(prompts_raw)]:
+    #   response = self._make_request(base64_vid, prompt)
+    #   extracted = self._extract_json(response)
+    #   responses.append(extracted)
 
-    responses = []
-    for prompt in [build_prompts(prompts_raw)]:
-      response = self._make_request(base64_vid, prompt)
-      extracted = self._extract_json(response)
-      responses.append(extracted)
-
-    print(responses)
+    # print(responses)
     
-    return responses
+    # return responses
+    
+    # response = self._make_request(base64_vid, prompt_large)
+    response = self._make_request_with_multiple_promprs(base64_vid, build_prompts(prompts_raw))
+    extracted = self._extract_json(response)
+    return extracted
 
   def generate_sematical_analysis(self, base64_vid: str):
     logging.debug('generate_semantical_analysis')
