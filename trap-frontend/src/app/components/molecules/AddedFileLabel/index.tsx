@@ -7,9 +7,9 @@ type AddedFileLabelProps = {
 
 const AddedFileLabel: React.FC<AddedFileLabelProps> = ({ fileName, handleRemove }) => {
   return (
-    <Card interactive={true} elevation={Elevation.TWO} className="flex">
-      <p>{fileName}</p>
-      <Button icon="remove" onClick={() => handleRemove(fileName)}/>
+    <Card interactive={true} elevation={Elevation.TWO} style={{display: "flex", justifyContent: "flex-start", alignItems: 'center'}}>
+      <p style={{marginBottom: 0}}>{fileName}</p>
+      <Button icon="delete" style={{marginLeft: "6px"}} onClick={() => handleRemove(fileName)}/>
     </Card>
   )
 };

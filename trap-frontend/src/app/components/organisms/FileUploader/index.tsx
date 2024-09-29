@@ -60,14 +60,14 @@ const FileUploader = () => {
         (
         <div>
           <div>
-            <FileInput inputProps={{multiple: true}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+            <FileInput inputProps={{multiple: false}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
           </div>
           {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
         </div>
         )
         }
         <div style={submitBtnBoxStyle}>
-          <Button disabled={loading} type="submit" text="Wrzuć do analizy"/>
+          <Button disabled={false} type="submit" text="Wrzuć do analizy"/>
           {error && <p style={errorStyle}>{error}</p>}
         </div>
       </form>

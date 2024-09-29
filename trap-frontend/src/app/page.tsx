@@ -3,8 +3,6 @@
 import React from 'react';
 import Image from 'next/image'; // Next.js image component for better optimization
 import styles from './css/Home.module.css'; // Import custom CSS
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import FileUploader from './components/organisms/FileUploader';
 
 export default function Home() {
@@ -14,7 +12,7 @@ export default function Home() {
             <div className={styles.logoImage}></div>
         </header>
 
-    <div className={styles.columns}>
+    <div style={{height: '100vh'}} className={styles.columns}>
         {/* Left Column: Image */}
         <div className={styles.leftColumn}>
             <Image
@@ -23,6 +21,7 @@ export default function Home() {
             width={400} // Width of the image
             height={400} // Height of the image
             className={styles.image}
+            style={{width: '100vh'}}
             />
         </div>
 
@@ -35,33 +34,7 @@ export default function Home() {
               <FileUploader />
             </div>
         </div>
-
-        {/* Arrow Section */}
-        <div className={styles.scrollArrow} onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-         <FontAwesomeIcon icon={faChevronDown} />
-         </div>
       </div>
-
-      {/* <div className={styles.processSection}>
-        <h2 className={styles.processTitle}>O to nasz proces</h2>
-        <div className={styles.processCards}>
-          <div className={styles.card}>
-            <div className={styles.cardImage}></div>
-            <h3 className={styles.cardTitle}>Value 1</h3>
-            <p className={styles.cardText}>Lorem ipsum dolor sit amet bla bla bla and stuff</p>
-          </div>
-          <div className={styles.card}>
-            <div className={styles.cardImage}></div>
-            <h3 className={styles.cardTitle}>Value 2</h3>
-            <p className={styles.cardText}>Lorem ipsum dolor sit amet bla bla bla and stuff</p>
-          </div>
-          <div className={styles.card}>
-            <div className={styles.cardImage}></div>
-            <h3 className={styles.cardTitle}>Value 3</h3>
-            <p className={styles.cardText}>Lorem ipsum dolor sit amet bla bla bla and stuff</p>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }
