@@ -52,7 +52,7 @@ class OpenAIAPI:
                     '''
                 },
             ]
-        ).choices[0].message.contents
+        ).choices[0].message.content
 
         return json.loads(data)
 
