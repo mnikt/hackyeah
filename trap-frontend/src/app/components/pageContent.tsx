@@ -16,16 +16,16 @@ import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
 
   const educationLevelMap = {
-    PRIMARY: { title: 'Podstawowe', emoji: '📚' },
-    SECONDARY: { title: 'Średnie', emoji: '🎒' },
-    HIGHER: { title: 'Wyższe', emoji: '🎓' }
+    podstawowe: { title: 'Podstawowe', emoji: '📚' },
+    średnie: { title: 'Średnie', emoji: '🎒' },
+    wyższe: { title: 'Wyższe', emoji: '🎓' }
   };
   
   // Define the "knowledgeLevel" enum
   const knowledgeLevelMap = {
-    GENERAL: { title: 'Ogólne', emoji: '📝' },
-    ACADEMIC: { title: 'Akademickie', emoji: '🧑‍🔬' },
-    BUSINESS: { title: 'Biznesowe', emoji: '💼' },
+    ogólne: { title: 'Ogólne', emoji: '📝' },
+    akademickie: { title: 'Akademickie', emoji: '🧑‍🔬' },
+    biznesowe: { title: 'Biznesowe', emoji: '💼' },
   };
 
 type DerivedError = {
@@ -56,9 +56,11 @@ const PageContent = () => {
   const [keywords, setKeywords] = useState<Array<string>>();
   const [stats, setStats] = useState<Stats>();
   const [semantics, setSemantics] = useState<Semantics>();
+  const [fileName, setFileName] = useState<string>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
+    setFileName(localStorage.getItem("fileName") as string);
     if (response) {
       const parsedData = JSON.parse(response);
       const timelinedErrors = parsedData.timelined_errors[0];
@@ -93,8 +95,8 @@ const PageContent = () => {
   return (
     <main style={container}>
         <div style={videoColumn}>
-            <VideoPanel videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
-            <TimelinePanel timelinedErrors={errorsTimeline}/>
+            <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
+            {/* <TimelinePanel timelinedErrors={errorsTimeline}/> */}
             {/* <ErrorsPanel errors={errors} /> */}
         </div>
 
