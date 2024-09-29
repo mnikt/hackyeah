@@ -44,7 +44,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
   return (
     <div>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <p style={{fontSize: '12px', marginBottom: '7px'}}>Process przetwarzania może zająć do 4 minut</p>
+        <p style={{fontSize: '12px', marginBottom: '7px'}}>Proces przetwarzania może zająć do 4 minut</p>
         { loading ? <Spinner /> :
         (
         <div>
