@@ -1,4 +1,5 @@
 import json
+import base64
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -14,16 +15,17 @@ def api(request):
     sizes = [file.size for file in request.FILES.values()]
     filename = filenames[0]
 
-    # openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
-    # print(openai_responses)
+    openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
+    print(openai_responses)
     
-    # timelined_errors = VertexAIAPI().generate_findings(filenames[0])
-
+    encoded_video = base64.b64encode(open(filenames[0], "rb").read()).decode("utf-8")
+    timelined_errors = VertexAIAPI().generate_timestamped_errors(encoded_video)
+    semantical_analysis = VertexAIAPI().generate_sematical_analysis(encoded_video)
 
     video = VideoFileClip(filename)
 
     transcription_data = OpenAIAPI().get_file_transcription(video)
-    # transcription_data = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
+    transcription_data = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
 
     errors = [
         {'text': "Typowy błąd byłby napisany tutaj z sugestią jakąś.", 'tag': "video", 'timestamp': "0:17s"},
@@ -49,8 +51,9 @@ def api(request):
         'video_size': video_size,
         'word_count': word_count,
         'transcription': transcription_data.text,
+        'semantic_analysis': semantical_analysis,
         'timelined_errors': timelined_errors,
-        # 'transcription_timestamps': transcription_data.words,
+        'transcription_timestamps': transcription_data.words,
         'summary': chat.get('podsumowanie')
     }
 
