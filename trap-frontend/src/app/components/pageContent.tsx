@@ -95,7 +95,10 @@ const PageContent = () => {
   return (
     <main style={container}>
         <div style={videoColumn}>
-            <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
+          {
+            fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
+          }
+            
             {/* <TimelinePanel timelinedErrors={errorsTimeline}/> */}
             {/* <ErrorsPanel errors={errors} /> */}
         </div>
