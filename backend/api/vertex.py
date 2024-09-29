@@ -50,6 +50,17 @@ Odwracanie się, przekręcanie, nadmierna gestykulacja: ruchy i gesty mówcy, kt
 Mimika: nieadekwatne wyrazy twarzy lub brak mimiki, co wpływa na przekaz emocjonalny.
 Niezgodność wypowiedzi z transkrypcją: sytuacje, w których mówiona treść nie odpowiada wyświetlanej na filmiku transkrypcji.
 Używanie strony biernej: nadmierne stosowanie strony biernej, np. 'podano', 'wskazano', 'podsumowano', co może utrudniać zrozumienie i osłabiać przekaz wypowiedzi.
+
+Powtórzenia tekstu to sytuacje gdzie słowa powtarzają się wiele razy np: "Zjadłem placki były smaczne, zjadłem placki bo były dobre". Jeżeli takie występują, wskaż konkretne miejsca w których wystąpiły powtórzenia tekstu. Nazwij ten błąd "powtórzenia tekstu".
+Nagła zmiana tematu, co powoduje niespójność wypowiedzi. Wskaż miejsca,  jeśli takie się pojawiają, gdzie wprowadzone są nowe, niepowiązane tematy bez wyraźnego przejścia lub kontekstu. Jeśli nie są to skrajne zmiany tematu - nie wskazuj. Nazwij ten błąd "nagła zmiana tematu".
+Zbyt duża ilość liczb. Wskaż miejsca, gdzie liczby pojawiają się w nadmiarze. Liczby te będą napisane cyframi np. "358,6". Nazwij ten błąd "zbyt duża ilośc liczb".
+Błędne lub nieadekwatne użycie słów, które zaburzają sens wypowiedzi. Wskaż te słowa. Przykładem jest "Kwadratowa rocznica". Wskaż miejsce, w którym występuje - tylko jeśli się pojawia. Nazwij ten błąd "błędne użycie słowa".
+Nadmiernie złożone terminy specjalistyczne (żargon), które mogą być trudne do zrozumienia dla osób spoza danej dziedziny. Wskaż miejsca, gdzie użyto zbyt skomplikowanego języka skupionego wokół dziedziny prawa. Nazwij ten błąd "żargon".
+Literówki, błędy ortograficzne lub błędnie zapisane wyrazy. Wskaż słowa, które zawierają błędy w pisowni. Przykładem jest słowo "relalizując" zamiast "realizując". Nazwij ten błąd "błędny zapis słowa".
+Zbyt liczne formy strony biernej. Wskaż miejsca, gdzie użyto strony biernej np. „wskazano”, „poruszono”, „podano”. Nie myl strony biernej z pierwszą osobą liczby mnogiej, np. "chcieliśmy", "uzyskamy". Nazwij ten błąd "forma bierna".
+Za długie, wielokrotnie złożone zdania. Wskaż zdania, które są powyżej trzykrotnie złożone. Nazwij ten błąd "wielokrotnie złożone zdania".
+Skróty, które mogą być niezrozumiałe dla czytelnika. Wskaż miejsca, gdzie użyto skrótów instytucji (np. KSeF). Nazwij ten błąd "brak rozwnięcia skrótu".
+
 Podaj szczegółowe wyjaśnienia dla każdego błędu, wraz z sygnaturą czasową. Odpowiadaj zawsze według wyżej wymienionej struktury.
 
  
