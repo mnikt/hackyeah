@@ -48,6 +48,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
         (
         <div>
           <div>
+            <p style={{fontSize: '12px', marginBottom: '7px'}}>Uwaga! Proces przetwarzania może zająć do 2 minut. Prosimy o cierpliwość!</p>
             <FileInput inputProps={{multiple: multipleUpload}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
           </div>
           {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}

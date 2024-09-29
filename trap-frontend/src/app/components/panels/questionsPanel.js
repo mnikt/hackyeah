@@ -4,33 +4,21 @@ import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint compone
 const QuestionsPanel = ({ questions }) => {
   return (
     <div>
-      <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
+      <Card interactive={false} elevation={Elevation.ONE}>
         <div style={header}>
           <h3>10 Pytań</h3>
         </div>
         <div style={questionsContainer}>
           {questions.map((question, index) => (
             <div key={index} style={questionStyle}>
-                <div style={numberStyle}>{index+1}.</div>
-                <div style={questionText}>{question}</div> {/* Question text */}
+              <span style={numberStyle}>{index + 1}</span>
+              <p style={questionText}>{question}</p>
             </div>
           ))}
         </div>
       </Card>
     </div>
   );
-};
-
-// Styles
-const cardStyle = {
-  padding: '20px',
-  borderRadius: '15px',
-  backgroundColor: '#f4f4f4',
-  width: '100%',
-  maxWidth: '800px',
-  margin: 'auto',
-  boxShadow: 'none',
-  overflow: 'hidden' 
 };
 
 const header = {
@@ -48,7 +36,8 @@ const questionsContainer = {
 const questionStyle = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
   gap: '10px',
 };
 
