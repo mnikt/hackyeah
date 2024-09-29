@@ -56,9 +56,11 @@ const PageContent = () => {
   const [keywords, setKeywords] = useState<Array<string>>();
   const [stats, setStats] = useState<Stats>();
   const [semantics, setSemantics] = useState<Semantics>();
+  const [fileName, setFileName] = useState<string>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
+    setFileName(localStorage.getItem("fileName") as string);
     if (response) {
       const parsedData = JSON.parse(response);
       const timelinedErrors = parsedData.timelined_errors[0];
@@ -93,7 +95,7 @@ const PageContent = () => {
   return (
     <main style={container}>
         <div style={videoColumn}>
-            <VideoPanel videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
+            <VideoPanel videoSrc={`http://textunwrap.pl:99/${fileName}`} />
             <TimelinePanel timelinedErrors={errorsTimeline}/>
             {/* <ErrorsPanel errors={errors} /> */}
         </div>

@@ -37,6 +37,7 @@ const FileUploader = () => {
 
       const jsonResponse = await response.json();
       localStorage.setItem('response', JSON.stringify(jsonResponse));
+      localStorage.setItem('fileName', addedFiles[0].name);
 
       router.push('/dashboard');
       setLoading(false);
