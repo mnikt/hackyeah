@@ -29,20 +29,11 @@ type TimelinedError = {
 type ErrorsTimeline = Array<TimelinedError>;
 
 type FoundErrorPanelProps = {
-    errorsTimeline: ErrorsTimeline
+    errorsTimeline: ErrorsTimeline;
 }
 
 
-const FoundErrorsPanel: React.FC<FoundErrorPanelProps> = ({ errorsTimeline = [] }) => {
-    // Ensure errorsTimeline is an array before attempting to map
-    if (!errorsTimeline || errorsTimeline.length === 0) {
-        return (
-            <div>
-                <p>No errors found</p>
-            </div>
-        ); // Return early if no errors are provided
-    }
-
+const FoundErrorsPanel: React.FC<FoundErrorPanelProps> = ({ errorsTimeline }) => {
     // Extract error names and counts
     const errorNames = errorsTimeline.map(error => error.errorName); // Extract error names
     const errorCounts = errorsTimeline.map(error => error.derivedErrors.length); // Count the number of derived errors for each error type
@@ -85,7 +76,6 @@ const FoundErrorsPanel: React.FC<FoundErrorPanelProps> = ({ errorsTimeline = [] 
 
 /* Styles */
 const cardStyle = {
-    margin: '20px 0',
     padding: '15px',
     width: '100%',
     maxWidth: '400px', // Adjust the width of each card

@@ -15,6 +15,7 @@ import AudiencePanel from "./panels/audiencePanel";
 import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
 import TranslationPanel from "./panels/translatePanel";
+import TranscriptionsPanel, { Transcription } from "./organisms/TranscriptionsPanel";
 
   const educationLevelMap = {
     podstawowe: { title: 'Podstawowe', emoji: '📚' },
@@ -59,6 +60,7 @@ const PageContent = ({ targetRef }) => {
   const [semantics, setSemantics] = useState<Semantics>();
   const [fileName, setFileName] = useState<string>();
   const [score, setScore] = useState<number>();
+  const [transcriptions, setTranscriptions] = useState<Transcription[]>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
@@ -97,6 +99,8 @@ const PageContent = ({ targetRef }) => {
 
       let score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
       setScore(score);
+
+      setTranscriptions(parsedData.timestamp_transcription as Transcription[]);
     }
   }, []);
 
@@ -106,18 +110,22 @@ const PageContent = ({ targetRef }) => {
       setSelectedBar(selectedBar === barType ? null : barType); // Toggle selection
   };
 
+  console.log('errorsTimeline: ', errorsTimeline);
+
   return (
-    <main style={container} ref={targetRef}>
-        <div style={videoColumn}>
-          {
-            fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
-          }
-            
-          <TimelinePanel timelinedErrors={errorsTimeline}/>
+    <main style={container}>
+      <div style={videoColumn}>
+        {
+          !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
+        }
+        {
+          !transcriptions ? <Spinner /> : <TranscriptionsPanel transcriptions={transcriptions} />
+        }
+          
         </div>
 
         <div style={errorColumn}>
-            <FoundErrorsPanel errors={errorsTimeline} selectedBar={selectedBar} onBarSelect={handleBarSelect} />
+            {!errorsTimeline ? <Spinner /> : <FoundErrorsPanel errorsTimeline={errorsTimeline} />}
             {!summary ? <Spinner /> : <SummaryPanel summary={summary} />}
             {!questions ? <Spinner /> : <QuestionsPanel questions={questions} />}
         </div>
@@ -144,7 +152,6 @@ const PageContent = ({ targetRef }) => {
               />
             }
 
-            <WordSuggestionPanel keywords={keywords} />
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
 
             <TranslationPanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
