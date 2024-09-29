@@ -65,7 +65,7 @@ const ComparisonPage = () => {
       const fileNames = Object.keys(jsonResponse.comparison);
       const data: ComparisonData = [];
       fileNames.forEach(fileName => {
-        const errorsKeys = Object.keys(jsonResponse[fileName]);
+        const errorsKeys = Object.keys(jsonResponse.comparison[fileName]);
 
         const dataForFile = errorsKeys.map((errorKey) => ({
           title: errorKey,
