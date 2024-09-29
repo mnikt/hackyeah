@@ -39,10 +39,10 @@ def api(request):
 
     data = {
         'chat': chat,
-        'keywords': chat.get('slowa_kluczowe'),
+        'keywords': chat.get('klucze'),
         'questions': chat.get('pytania'),
-        'education_level': chat.get('ocena_wyksztalcenie'),
-        'interest_level': chat.get('ocena_zainteresowania'),
+        'education_level': chat.get('wyksztalcenie'),
+        'interest_level': chat.get('zainteresowanie'),
         'overall_score': overall_score,
         'video_duration': video_duration,
         'video_size': video_size,
