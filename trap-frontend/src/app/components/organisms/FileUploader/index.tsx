@@ -44,11 +44,12 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
   return (
     <div>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+        <p style={{fontSize: '12px', marginBottom: '7px'}}>Process przetwarzania może zająć do 4 minut</p>
         { loading ? <Spinner /> :
         (
         <div>
           <div>
-            <p style={{fontSize: '12px', marginBottom: '7px'}}>Uwaga! Proces przetwarzania może zająć do 2 minut. Prosimy o cierpliwość!</p>
+            
             <FileInput inputProps={{multiple: multipleUpload}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
           </div>
           {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
