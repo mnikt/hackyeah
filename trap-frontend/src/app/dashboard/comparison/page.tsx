@@ -98,11 +98,11 @@ const ComparisonPage = () => {
           <FileUploader multipleUpload={true} onSubmit={handleSubmit} />
         </Card>
 
-        {comparisonData?.length && (
+        {comparisonData && (
           <div style={comparisonContainerStyle}>
             <Card style={comparisonReportContainerStyle}>
               {comparisonData[0].map(dataForFile => (
-                <div>
+                <div key={dataForFile.title}>
                   <h4>{dataForFile.title}</h4>
                   <div>
                     <p>{dataForFile.errors[0].timestamp}</p>
@@ -113,7 +113,7 @@ const ComparisonPage = () => {
             </Card>
             <Card style={comparisonReportContainerStyle}>
               {comparisonData[1].map(dataForFile => (
-                  <div>
+                  <div key={dataForFile.title}>
                     <h4>{dataForFile.title}</h4>
                     <div>
                       <p>{dataForFile.errors[0].timestamp}</p>
