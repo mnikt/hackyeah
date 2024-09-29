@@ -53,7 +53,7 @@ const ComparisonPage = () => {
 
 
     try {
-      const response = await fetch("http://localhost:8000/comparison", {
+      const response = await fetch("http://34.118.88.52:8000/comparison", {
         method: "POST",
         body: formData,
       });
