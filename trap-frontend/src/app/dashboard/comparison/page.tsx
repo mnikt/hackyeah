@@ -70,12 +70,12 @@ const ComparisonPage = () => {
         const dataForFile = errorsKeys.map((errorKey) => ({
           title: errorKey,
           errors: [{
-            timestamp: jsonResponse[fileName][errorKey].timestamp,
-            description: jsonResponse[fileName][errorKey].description,
+            timestamp: jsonResponse.comparison[fileName][errorKey].timestamp,
+            description: jsonResponse.comparison[fileName][errorKey].description,
           }]
         }))
         data.push(dataForFile);
-      })
+      });
 
       setComparisonData(data);
 
