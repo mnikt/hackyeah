@@ -4,8 +4,33 @@ import React from 'react';
 import Image from 'next/image'; // Next.js image component for better optimization
 import styles from './css/Home.module.css'; // Import custom CSS
 import FileUploader from './components/organisms/FileUploader';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleSubmit = async (files: File[]) => {
+    const formData = new FormData();
+    files.forEach((file, idx) => {
+      formData.append(`file_${idx}`, file);
+    })
+
+
+    try {
+      const response = await fetch("http://34.118.88.52:8000/api", {
+        method: "POST",
+        body: formData,
+      });
+
+      const jsonResponse = await response.json();
+      localStorage.setItem('response', JSON.stringify(jsonResponse));
+
+      router.push('/dashboard');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className={styles.container}>
         <header className={styles.header}>
@@ -31,7 +56,7 @@ export default function Home() {
             <p className={styles.subtitle}>Pokażemy Ci jak mówić, by każdy Ciebie zrozumiał.</p>
 
             <div className={styles.buttonContainer}>
-              <FileUploader />
+              <FileUploader onSubmit={handleSubmit} multipleUpload={false} />
             </div>
         </div>
       </div>

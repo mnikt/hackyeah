@@ -58,3 +58,17 @@ def api(request):
     }
 
     return HttpResponse(content=json.dumps(data), content_type="application/json")
+
+
+@csrf_exempt
+def comparison(request):
+    filenames = [file.file.file.name for file in request.FILES.values()]
+    
+    encoded_videos = [base64.b64encode(open(f, "rb").read()).decode("utf-8") for f in filenames]
+    comparison = VertexAIAPI().generate_comparison(encoded_videos)
+
+    data = {
+        'comparison': comparison
+    }
+
+    return HttpResponse(content=json.dumps(data), content_type="application/json")

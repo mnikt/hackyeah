@@ -3,15 +3,17 @@
 import { FormEvent, FormEventHandler, useState } from "react";
 import { Button, FileInput, Spinner } from "@blueprintjs/core";
 import AddedFileLabel from "../../molecules/AddedFileLabel";
-import { useRouter } from "next/navigation";
 
-const FileUploader = () => {
+type FileUploaderProps = {
+  multipleUpload: boolean;
+  onSubmit: (files: File[]) => Promise<void>;
+}
+
+const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>();
   const [addedFiles, setAddedFiles] = useState<Array<File>>([]);
 
-
-  const router = useRouter();
 
   const handleInputChange: FormEventHandler<HTMLInputElement> = (event) => {
     const files = event.target.files as FileList;
@@ -22,30 +24,15 @@ const FileUploader = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const formData = new FormData();
-    addedFiles.forEach((file, idx) => {
-      formData.append(`file_${idx}`, file);
-    })
-
 
     try {
       setLoading(true);
-      const response = await fetch("http://34.118.88.52:8000/api", {
-        method: "POST",
-        body: formData,
-      });
-
-      const jsonResponse = await response.json();
-      localStorage.setItem('response', JSON.stringify(jsonResponse));
-
-      router.push('/dashboard');
-      setLoading(false);
+      await onSubmit(addedFiles);
     } catch (error) {
-      setLoading(false);
       setError(`Wystąpił błąd podczas analizy pliku: ${error ? error.message : ''}`);
       console.error(error);
-
     }
+    setLoading(false);
   }
 
   const handleRemove = (fileName: string) => {
@@ -60,7 +47,7 @@ const FileUploader = () => {
         (
         <div>
           <div>
-            <FileInput inputProps={{multiple: false}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
+            <FileInput inputProps={{multiple: multipleUpload}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
           </div>
           {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
         </div>

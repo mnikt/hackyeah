@@ -1,7 +1,10 @@
+'use click';
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns, faDownload } from '@fortawesome/free-solid-svg-icons';
 import styles from "../css/header.module.css";
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -12,8 +15,10 @@ const Header = () => {
             <div className={styles.buttonContainer}>
                 <button className={styles.primaryButton}>
                     <span style={buttonLabel}>
-                        <FontAwesomeIcon icon={faTableColumns} />
-                        Porównaj
+                        <Link href={'/dashboard/comparison'}>                        
+                            <FontAwesomeIcon icon={faTableColumns} />
+                            Porównaj
+                        </Link>
                     </span>
                 </button>
 
