@@ -115,7 +115,7 @@ class VertexAIAPI:
     json_start_phrase = '```json'
     start = content.find(json_start_phrase) + len(json_start_phrase)
     end = content.find('```', start+1)
-    return content[start:end]
+    return json.loads(content[start:end])
 
   def _parse_video_to_base64(self, path: str):
     # Read the video file in binary mode

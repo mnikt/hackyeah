@@ -23,6 +23,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError(undefined);
 
 
     try {

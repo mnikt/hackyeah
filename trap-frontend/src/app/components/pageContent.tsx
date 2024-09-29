@@ -49,8 +49,8 @@ type Stats = {
 
 const PageContent = () => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
-  const [educationLevel, setEducationLevel] = useState<'PRIMARY' | 'SECONDARY' | 'HIGHER'>();
-  const [knowledgeLevel, setKnowledgeLevel] = useState<'GENERAL' | 'ACADEMIC' | 'BUSINESS'>();
+  const [educationLevel, setEducationLevel] = useState<'podstawowe' | 'średnie' | 'wyższe'>();
+  const [knowledgeLevel, setKnowledgeLevel] = useState<'ogólne' | 'akademickie' | 'biznesowe'>();
   const [summary, setSummary] = useState<string>();
   const [questions, setQuestions] = useState<Array<string>>();
   const [keywords, setKeywords] = useState<Array<string>>();
@@ -99,8 +99,7 @@ const PageContent = () => {
             fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
           }
             
-            {/* <TimelinePanel timelinedErrors={errorsTimeline}/> */}
-            {/* <ErrorsPanel errors={errors} /> */}
+          <TimelinePanel timelinedErrors={errorsTimeline}/>
         </div>
 
         <div style={errorColumn}>
