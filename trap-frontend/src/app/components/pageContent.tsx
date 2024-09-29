@@ -144,7 +144,6 @@ const PageContent = ({ targetRef }) => {
               />
             }
 
-            <WordSuggestionPanel keywords={keywords} />
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
 
             <TranslatePanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />

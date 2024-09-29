@@ -24,7 +24,6 @@ const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => 
             <div style={infoContainer}>
               <span style={highlight}>{textWordCount}</span>
               <span style={unit}>słów</span>
-              <span style={divider}>|</span>
             </div>
           </div>
         </div>

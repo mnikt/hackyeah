@@ -1,7 +1,7 @@
 import { Card, Elevation } from "@blueprintjs/core";
 
 export type Transcription = {
-  timestamp: string;
+  timestamp: number;
   text: string;
 }
 
@@ -16,7 +16,7 @@ const TranscriptionsPanel: React.FC<TranscriptionsPanelProps> = ({transcriptions
           <div style={contentPadding}>
             {transcriptions.map((transcription) => (
               <div key={transcription.timestamp}>
-                <p style={timestampStyle}>{transcription.timestamp}:</p>
+                <p style={timestampStyle}>{(transcription.timestamp / 60)}:{transcription.timestamp % 60}:</p>
                 <p>{transcription.text}</p>
               </div>
             ))}
