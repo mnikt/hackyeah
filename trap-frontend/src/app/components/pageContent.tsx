@@ -61,6 +61,7 @@ const PageContent = ({ targetRef }) => {
   const [fileName, setFileName] = useState<string>();
   const [score, setScore] = useState<number>();
   const [transcriptions, setTranscriptions] = useState<Transcription[]>();
+  const [translation, setTranslation] = useState<string>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
@@ -89,6 +90,7 @@ const PageContent = ({ targetRef }) => {
       setSummary(parsedData.summary);
       setQuestions(parsedData.questions);
       setKeywords(parsedData.keywords);
+      setTranslation(parsedData.translation);
       setStats({
         duration: parsedData.video_duration,
         size: parsedData.video_size,
@@ -146,7 +148,7 @@ const PageContent = ({ targetRef }) => {
 
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
 
-            <TranslatePanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
+            <TranslatePanel translation={[translation]} />
         </div>
     </main>
   );

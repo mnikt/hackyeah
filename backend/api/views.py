@@ -65,6 +65,7 @@ def api(request):
         'questions': data['chat'].get('pytania'),
         'education_level': data['chat'].get('wyksztalcenie'),
         'interest_level': data['chat'].get('zainteresowanie'),
+        'translation': data['chat'].get('eng'),
         'video_size': video_size,
         'word_count': word_count,
         'transcription': text,
