@@ -1,12 +1,54 @@
 'use click';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTableColumns, faDownload } from '@fortawesome/free-solid-svg-icons';
 import styles from "../css/header.module.css";
 import Link from 'next/link';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-const Header = () => {
+library.add(fas);
+
+const Header = ({ action }) => {
+    const [linkDestination, setLinkDestination] = useState('/dashboard/comparison');
+
+  // Check if the URL contains '/comparison' and set the destination accordingly
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.href.includes('/comparison')) {
+        setLinkDestination('/dashboard');
+      } else {
+        setLinkDestination('/dashboard/comparison');
+      }
+    }
+  }, []);
+
+  const [linkLabel, setLinkLabel] = useState("Wróć");
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.href.includes('/comparison')) {
+        setLinkLabel('Wróć');
+      } else {
+        setLinkLabel('Porównaj');
+      }
+    }
+  }, []);
+
+  const [linkIcon, setLinkIcon] = useState("Wróć");
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.href.includes('/comparison')) {
+        setLinkIcon('fa-chevron-left');
+      } else {
+        setLinkIcon('fa-table-columns');
+      }
+    }
+  }, []);
+
+
   return (
     <header className={styles.headerStyle}>
         <div style={container}>
@@ -15,14 +57,14 @@ const Header = () => {
             <div className={styles.buttonContainer}>
                 <button className={styles.primaryButton}>
                     <span style={buttonLabel}>
-                        <Link href={'/dashboard/comparison'}>                        
-                            <FontAwesomeIcon icon={faTableColumns} />
-                            Porównaj
+                        <Link href={linkDestination} style={compareButton}>                        
+                            <FontAwesomeIcon icon={["fas", linkIcon]} />
+                            {linkLabel}
                         </Link>
                     </span>
                 </button>
 
-                <button className={styles.secondaryButton}>
+                <button onClick={action} className={styles.secondaryButton}>
                     <span style={buttonLabel}>
                         <FontAwesomeIcon icon={faDownload} />
                         Zapisz Raport
@@ -84,6 +126,15 @@ const buttonLabel = {
     justifyContent: 'center',
     gap: '8px'
 };
+
+const compareButton = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '8px',
+    textDecoration: 'none',
+    color: "#fff"
+}
 
 const buttonLabelLabel = {
     fontSize: '16px',

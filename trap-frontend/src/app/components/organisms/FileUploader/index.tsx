@@ -54,13 +54,24 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
         )
         }
         <div style={submitBtnBoxStyle}>
-          <Button disabled={false} type="submit" text="Wrzuć do analizy"/>
+          <Button disabled={false} type="submit" text="Wrzuć do analizy" style={primaryButton} />
           {error && <p style={errorStyle}>{error}</p>}
         </div>
       </form>
     </div>
   )
 };
+
+const primaryButton = {
+  padding: '15px 30px',
+  backgroundColor: '#407bff',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '15px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s'
+}
 
 const submitBtnBoxStyle = {
   marginTop: '16px',

@@ -14,6 +14,7 @@ import QuestionsPanel from "./panels/questionsPanel";
 import AudiencePanel from "./panels/audiencePanel";
 import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
+import TranslationPanel from "./panels/translatePanel";
 
   const educationLevelMap = {
     podstawowe: { title: 'Podstawowe', emoji: '📚' },
@@ -47,7 +48,7 @@ type Stats = {
   wordCount: number;
 };
 
-const PageContent = () => {
+const PageContent = ({ targetRef }) => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
   const [educationLevel, setEducationLevel] = useState<'PRIMARY' | 'SECONDARY' | 'HIGHER'>();
   const [knowledgeLevel, setKnowledgeLevel] = useState<'GENERAL' | 'ACADEMIC' | 'BUSINESS'>();
@@ -93,7 +94,7 @@ const PageContent = () => {
   }, []);
 
   return (
-    <main style={container}>
+    <main style={container} ref={targetRef}>
         <div style={videoColumn}>
           {
             fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
@@ -132,6 +133,8 @@ const PageContent = () => {
 
             <WordSuggestionPanel keywords={keywords} />
             {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
+
+            <TranslationPanel translation={[" Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia.", "sentence2", "sentence3"]} />
         </div>
     </main>
   );
