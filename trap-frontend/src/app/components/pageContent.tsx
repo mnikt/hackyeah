@@ -95,7 +95,7 @@ const PageContent = ({ targetRef }) => {
       });
       setSemantics(parsedData.semantic_analysis);
 
-      let score = Math.min(Math.random() * 10 + errorsNum * 7, 86);
+      let score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
       setScore(score);
     }
   }, []);

@@ -146,7 +146,7 @@ class VertexAIAPI:
 
 
     responses = []
-    for prompt in [build_prompts(prompts_raw)[0]]:
+    for prompt in [build_prompts(prompts_raw)]:
       response = self._make_request(base64_vid, prompt)
       extracted = self._extract_json(response)
       responses.append(extracted)
