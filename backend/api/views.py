@@ -48,7 +48,7 @@ def api(request):
         'video_size': video_size,
         'word_count': word_count,
         'transcription': transcription_data.text,
-        'semantic_analysis': semantical_analysis,
+        'semantic_analysis': semantical_analysis or "",
         'timelined_errors': timelined_errors,
         # 'transcription_timestamps': transcription_data.words,
         'summary': chat.get('podsumowanie')
