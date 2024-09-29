@@ -24,6 +24,7 @@ export default function Home() {
 
       const jsonResponse = await response.json();
       localStorage.setItem('response', JSON.stringify(jsonResponse));
+      localStorage.setItem('fileName', files[0].name);
 
       router.push('/dashboard');
     } catch (error) {
