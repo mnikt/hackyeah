@@ -16,6 +16,7 @@ type ComparisonData = Array<ComparisonReport>;
 
 const ComparisonPage = () => {
   const [comparisonData, setComparisonData] = useState<ComparisonData>();
+  const [fileNames, setFileNames] = useState<string[]>();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,6 +27,8 @@ const ComparisonPage = () => {
       const comparison = parsedData.comparison;
 
       const fileNames = Object.keys(comparison);
+      setFileNames(fileNames);
+
       const data: ComparisonData = [];
       fileNames.forEach(fileName => {
         const errorsKeys = Object.keys(comparison[fileName]);
@@ -95,13 +98,14 @@ const ComparisonPage = () => {
         <Card style={titleStyle}>
           <h1 style={title}>Porównaj nagrania</h1>
           <p style={subtitle}>Możliwe jest dodanie tylko dwóch filmów do porówniania. Możliwy czas oczekiwania na odpowiedź może być dłuższy niż przy zwykłej analizie.</p>
-          <p style={subtitle}>Aby dodać dwa pliki naraz naley wcisnąć control/cmd</p>
+          <p style={subtitle}>Aby dodać dwa pliki naraz naley wcisnąć przycisk wybierz a następnie z listy wybrać dwa pliki przytrzymując klawisz control/cmd.</p>
           <FileUploader multipleUpload={true} onSubmit={handleSubmit} />
         </Card>
 
-        {comparisonData && (
+        {comparisonData && fileNames?.length && (
           <div style={comparisonContainerStyle}>
             <Card style={comparisonReportContainerStyle}>
+              <h3>{fileNames[0]}</h3>
               {comparisonData[0].map(dataForFile => (
                 <div key={dataForFile.title}>
                   <h4>{dataForFile.title}</h4>
@@ -113,6 +117,7 @@ const ComparisonPage = () => {
               ))}
             </Card>
             <Card style={comparisonReportContainerStyle}>
+              <h3>{fileNames[1]}</h3>
               {comparisonData[1].map(dataForFile => (
                   <div key={dataForFile.title}>
                     <h4>{dataForFile.title}</h4>
