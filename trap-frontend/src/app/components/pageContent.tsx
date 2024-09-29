@@ -1,4 +1,6 @@
-import React from "react";
+'use client';
+
+import React, { useEffect, useState } from "react";
 import FoundErrorsPanel from "./panels/foundErrorsPanel";
 import MglistaPanel from "./panels/mglistaPanel";
 import KeywordPanel from "./panels/keywordPanel";
@@ -8,7 +10,7 @@ import TimelinePanel from "./panels/timelinePanel";
 import VideoPanel from "./panels/VideoPanel";
 import WordSuggestionPanel from "./panels/wordSuggestionPanel";
 import QuestionsPanel from "./panels/questionsPanel";
-import ErrorsPanel from "./panels/errorsPanel";
+// import ErrorsPanel from "./panels/errorsPanel";
 import AudiencePanel from "./panels/audiencePanel";
 
 const keywords = [
@@ -34,33 +36,6 @@ const keywords = [
     BUSINESS: { title: 'Biznesowe', emoji: '💼' },
   };
 
-  const textDictionary = {
-    1: [
-      { text: "Wszystkie usługi resortu", highlight: true },
-      { text: " są już dostępne, a dane podatników niezagrożone.", highlight: false }
-    ],
-    2: [
-      { text: "Sytuacja była spowodowana problemami technicznymi.", highlight: false }
-    ],
-    3: [
-      { text: "Centrum Informatyki ", highlight: false },
-      { text: "zdiagnozowało przyczynę", highlight: true },
-      { text: " i rozwiązało problem.", highlight: false }
-    ],
-    4: [
-    { text: "Wszystkie usługi resortu", highlight: true },
-    { text: " są już dostępne, a dane podatników niezagrożone.", highlight: false }
-    ],
-    5: [
-    { text: "Sytuacja była spowodowana problemami technicznymi.", highlight: false }
-    ],
-    6: [
-    { text: "Centrum Informatyki ", highlight: false },
-    { text: "zdiagnozowało przyczynę", highlight: true },
-    { text: " i rozwiązało problem.", highlight: false }
-    ]
-  };
-
   const questions = [
     "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
     "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
@@ -74,22 +49,50 @@ const keywords = [
     "Typowy błąd byłby napisany tutaj z sugestią jakąś."
   ];
 
-  const errors = [
-    { origin: "Wszystkie usługi resortu", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "0:17s" },
-    { origin: "zdiagnozowało przyczynę", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:25s" },
-    { origin: "Sytuacja była spowodowana problemami technicznymi.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "text", timestamp: "0:40s" },
-    { origin: "i rozwiązało problem.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "video", timestamp: "1:12s" },
-    { origin: "a dane podatników niezagrożone.", text: "Typowy błąd byłby napisany tutaj z sugestią jakąś.", tag: "audio", timestamp: "0:30s" },
-  ];
+type DerivedError = {
+  timestamp: string;
+  description: string;
+}
+
+type TimelinedError = {
+  errorName: string;
+  derivedErrors: Array<DerivedError>;
+};
+
+type ErrorsTimeline = Array<TimelinedError>;
   
 
 const PageContent = () => {
+  const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
+
+  useEffect(() => {
+    const response = localStorage.getItem('response');
+    if (response) {
+      const parsedErrors = JSON.parse(response);
+      const timelinedErrors = parsedErrors.timelined_errors[0];
+      const keys = Object.keys(timelinedErrors);
+
+      const errors: ErrorsTimeline = [];
+      keys.forEach(key => {
+        const timelinedError: TimelinedError = {
+          errorName: key,
+          derivedErrors: timelinedErrors[key] as DerivedError[],
+        }
+        errors.push(timelinedError)
+      })
+
+      setErrorsTimeline(errors);
+    }
+  }, []);
+
+  console.log('errorsTimeline: ', errorsTimeline);
+
   return (
     <main style={container}>
         <div style={videoColumn}>
             <VideoPanel videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
-            <TimelinePanel textDictionary={textDictionary} />
-            <ErrorsPanel errors={errors} />
+            <TimelinePanel timelinedErrors={errorsTimeline}/>
+            {/* <ErrorsPanel errors={errors} /> */}
         </div>
 
         <div style={errorColumn}>

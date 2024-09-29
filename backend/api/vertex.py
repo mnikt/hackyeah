@@ -7,7 +7,7 @@ from vertexai.generative_models import GenerativeModel, Part
 from api.secrets import PROJECT_ID
 
 base_instruction = "Wyobraź sobie że jesteś doświadczonym mówcą, który obserwuje i analizuje mówców, którzy są na filmie. Twoim zadaniem jest wykryć błędy w tekście mówionym podczas filmu, gdzie mówca mówi w języku polskim. Przeanalizuj poniższy materiał filmowy i zidentyfikuj błędy opisane poniżej. Dla każdego zidentyfikowanego błędu podaj sygnaturę czasową, kiedy on wystąpił. Zidentyfikuj i opisz szczegółowo: "
-prompt_suffix = "Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'Kategoria': [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]}. Nie podawaj nic innego. Odpowiadaj zawsze według wyżej wymienionej struktury."
+prompt_suffix = "Odpowiedź ma zawierać tylko strukturę JSON w takim formacie {'kategoria błędu': [{category: kategoria błędu, timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]}. Nie podawaj nic innego. Odpowiadaj zawsze według wyżej wymienionej struktury."
 
 def build_prompts(prompts):
   enhanced_prompts = []
@@ -86,7 +86,7 @@ class VertexAIAPI:
     encoded_video = base64.b64encode(open(file_path, "rb").read()).decode("utf-8")
 
     responses = []
-    for prompt in build_prompts(prompts_raw)[0]:
+    for prompt in [build_prompts(prompts_raw)[0]]:
       response = self._make_request(encoded_video, prompt)
       
       json_start_phrase = '```json'

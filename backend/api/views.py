@@ -13,14 +13,14 @@ def api(request):
     # openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
     # print(openai_responses)
     
-    vertex_responses = [VertexAIAPI().generate_findings(filename) for filename in filenames]
+    timelined_errors = VertexAIAPI().generate_findings(filenames[0])
 
 
     return HttpResponse(
         content=json.dumps(
             {
                 "status": "OK", 
-                "errors": vertex_responses
+                "timelined_errors": timelined_errors
             }
         ),
         content_type="application/json"

@@ -5,17 +5,33 @@ import { Card, Elevation, Tabs, Tab } from "@blueprintjs/core"; // Import Bluepr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faVolumeUp, faAlignLeft } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 
-const ErrorsPanel = ({ errors }) => {
+type DerivedError = {
+  timestamp: string;
+  description: string;
+}
+
+type TimelinedError = {
+  errorName: string;
+  derivedErrors: Array<DerivedError>;
+};
+
+type ErrorsTimeline = Array<TimelinedError>;
+
+type ErrorsPanelsProps = {
+  timelinedErrors: ErrorsTimeline | undefined;
+}
+
+const ErrorsPanel: React.FC<ErrorsPanelsProps> = ({ timelinedErrors }) => {
   const [selectedTab, setSelectedTab] = useState('video'); // Default tab is 'video'
 
   // Filter errors based on the selected tab (tag)
-  const filteredErrors = errors.filter(error => error.tag === selectedTab);
+  // const filteredErrors = errors.filter(error => error.tag === selectedTab);
 
   return (
     <div>
       <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
         {/* Blueprint Tabs with FontAwesome icons */}
-        <Tabs id="error-tabs" onChange={setSelectedTab} selectedTabId={selectedTab}>
+        {/* <Tabs id="error-tabs" onChange={setSelectedTab} selectedTabId={selectedTab}>
           <Tab
             id="video"
             title={
@@ -44,13 +60,13 @@ const ErrorsPanel = ({ errors }) => {
             }
           />
           <Tabs.Expander />
-        </Tabs>
+        </Tabs> */}
 
         {/* Errors content */}
         <div style={errorsContainer}>
-          {filteredErrors.map((error, index) => (
+          {timelinedErrors && timelinedErrors.map((error, index) => (
             <div key={index} style={errorItem}>
-              <div style={timestamp}>{error.timestamp}</div>
+              <div style={timestamp}>{error.errorName}</div>
               <div style={content}>
               <div style={origin}>{error.origin}</div>
                 <div style={errorText}>{error.text}</div>
