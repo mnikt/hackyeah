@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Elevation } from "@blueprintjs/core"; // Import Blueprint components
 
-const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize }) => {
+const VidInfoPanel = ({ videoDuration, videoSize, textWordCount, textSize }) => {
   return (
     <div>
       <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
@@ -15,9 +15,6 @@ const VidInfoPanel = ({ videoDuration, videoSize, date, textWordCount, textSize 
               <span style={divider}>|</span>
               <span style={highlight}>{videoSize}</span>
               <span style={unit}>mb</span>
-              <span style={divider}>|</span>
-              <span style={highlight}>{date}</span>
-              <span style={unit}>data</span>
             </div>
           </div>
 

@@ -12,42 +12,20 @@ import WordSuggestionPanel from "./panels/wordSuggestionPanel";
 import QuestionsPanel from "./panels/questionsPanel";
 // import ErrorsPanel from "./panels/errorsPanel";
 import AudiencePanel from "./panels/audiencePanel";
+import { Spinner } from "@blueprintjs/core";
 
-const keywords = [
-    "cooked soup", 
-    "cooked soup", 
-    "cooked soup extr", 
-    "kostka rosołowa", 
-    "cooked", 
-    "cooked soup", 
-    "super bad"
-  ];
-
-  const educationLevel = {
+  const educationLevelMap = {
     PRIMARY: { title: 'Podstawowe', emoji: '📚' },
     SECONDARY: { title: 'Średnie', emoji: '🎒' },
     HIGHER: { title: 'Wyższe', emoji: '🎓' }
   };
   
   // Define the "knowledgeLevel" enum
-  const knowledgeLevel = {
+  const knowledgeLevelMap = {
     GENERAL: { title: 'Ogólne', emoji: '📝' },
     ACADEMIC: { title: 'Akademickie', emoji: '🧑‍🔬' },
     BUSINESS: { title: 'Biznesowe', emoji: '💼' },
   };
-
-  const questions = [
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś.",
-    "Typowy błąd byłby napisany tutaj z sugestią jakąś."
-  ];
 
 type DerivedError = {
   timestamp: string;
@@ -60,16 +38,29 @@ type TimelinedError = {
 };
 
 type ErrorsTimeline = Array<TimelinedError>;
+
+type Stats = {
+  duration: string;
+  size: number;
+  score: number;
+  wordCount: number;
+};
   
 
 const PageContent = () => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
+  const [educationLevel, setEducationLevel] = useState<'PRIMARY' | 'SECONDARY' | 'HIGHER'>();
+  const [knowledgeLevel, setKnowledgeLevel] = useState<'GENERAL' | 'ACADEMIC' | 'BUSINESS'>();
+  const [summary, setSummary] = useState<string>();
+  const [questions, setQuestions] = useState<Array<string>>();
+  const [keywords, setKeywords] = useState<Array<string>>();
+  const [stats, setStats] = useState<Stats>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
     if (response) {
-      const parsedErrors = JSON.parse(response);
-      const timelinedErrors = parsedErrors.timelined_errors[0];
+      const parsedData = JSON.parse(response);
+      const timelinedErrors = parsedData.timelined_errors[0];
       const keys = Object.keys(timelinedErrors);
 
       const errors: ErrorsTimeline = [];
@@ -78,14 +69,24 @@ const PageContent = () => {
           errorName: key,
           derivedErrors: timelinedErrors[key] as DerivedError[],
         }
-        errors.push(timelinedError)
+        errors.push(timelinedError);
       })
 
       setErrorsTimeline(errors);
+
+      setEducationLevel(parsedData.education_level);
+      setKnowledgeLevel(parsedData.interest_level);
+      setSummary(parsedData.summary);
+      setQuestions(parsedData.questions);
+      setKeywords(parsedData.keywords);
+      setStats({
+        duration: parsedData.video_duration,
+        size: parsedData.video_size,
+        score: parsedData.overall_score,
+        wordCount: parsedData.word_count,
+      });
     }
   }, []);
-
-  console.log('errorsTimeline: ', errorsTimeline);
 
   return (
     <main style={container}>
@@ -97,24 +98,29 @@ const PageContent = () => {
 
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
-            <SummaryPanel summary="Na podstawie załączonego zrzutu ekranu, analiza tekstu oraz wideo dotyczy sprawdzenia treści pod kątem błędów językowych, złożoności tekstu i proponowanych sugestii poprawy. Indeks mglistości (Fog Index) wynosi 75, co sugeruje, że tekst jest trudny do zrozumienia. Znaleziono 21 błędów, podzielonych na różne kategorie (np. 4 błędy merytoryczne, 11 stylowych i 6 innych). System wyświetla również sugestie dotyczące doboru słów, fraz kluczowych oraz zawiera pytania diagnostyczne dotyczące tekstu. Cały proces opiera się na analizie audiowizualnej oraz tekstowej, wspieranej przez automatyczne sugestie poprawy i ocenę czytelności." />
-            <QuestionsPanel questions={questions} />
+            {!summary ? <Spinner /> : <SummaryPanel summary={summary} />}
+            {!questions ? <Spinner /> : <QuestionsPanel questions={questions} />}
         </div>
 
         <div style={questionColumn}>
-            <VidInfoPanel videoDuration="0:31" videoSize="76" date="14.10.2024" textWordCount="473" textSize="53" />
+            {!stats ? 
+              <Spinner /> :
+              <VidInfoPanel videoDuration={stats.duration} videoSize={stats.size} textWordCount={stats.wordCount} textSize={"0"} />
+            }
             <MglistaPanel score={33}/>
 
-            <AudiencePanel title="Grupa Odbiorcza" 
-                icon={educationLevel.HIGHER.emoji}
-                label={educationLevel.HIGHER.title}
-                icon2={knowledgeLevel.BUSINESS.emoji}
-                label2={knowledgeLevel.BUSINESS.title}
-            />
+            {!educationLevel || !knowledgeLevel ? 
+              <Spinner /> : 
+              <AudiencePanel title="Grupa Odbiorcza"
+                  icon={educationLevelMap[educationLevel].emoji}
+                  label={educationLevelMap[educationLevel].title}
+                  icon2={knowledgeLevelMap[knowledgeLevel].emoji}
+                  label2={knowledgeLevelMap[knowledgeLevel].title}
+              />
+            }
 
             <WordSuggestionPanel keywords={keywords} />
-
-            <KeywordPanel keywords={keywords} />
+            {!keywords ? <Spinner /> : <KeywordPanel keywords={keywords} />}
         </div>
     </main>
   );

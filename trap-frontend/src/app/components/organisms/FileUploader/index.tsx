@@ -7,7 +7,9 @@ import { useRouter } from "next/navigation";
 
 const FileUploader = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>();
   const [addedFiles, setAddedFiles] = useState<Array<File>>([]);
+
 
   const router = useRouter();
 
@@ -28,7 +30,7 @@ const FileUploader = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://127.0.0.1:8000/api", {
+      const response = await fetch("http://textuntrap.pl:8000/api", {
         method: "POST",
         body: formData,
       });
@@ -39,7 +41,10 @@ const FileUploader = () => {
       router.push('/dashboard');
       setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(`Wystąpił błąd podczas analizy pliku: ${error ? error.message : ''}`);
       console.error(error);
+
     }
   }
 
@@ -51,18 +56,28 @@ const FileUploader = () => {
   return (
     <div>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+        { loading ? <Spinner /> :
+        (
         <div>
-          { loading ? <Spinner /> :
+          <div>
             <FileInput inputProps={{multiple: true}} large disabled={false} text="wybierz plik" buttonText="Wybierz" onInputChange={handleInputChange} />
-          }
+          </div>
+          {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
         </div>
-        {addedFiles.map(file => <AddedFileLabel key={file.name} fileName={file.name} handleRemove={handleRemove}/>)}
+        )
+        }
         <div>
           <Button disabled={loading} type="submit" text="Wrzuć do analizy"/>
+          {error && <span style={errorStyle}>{error}</span>}
         </div>
       </form>
     </div>
   )
 };
+
+const errorStyle = {
+  color: 'red',
+  marginTop: '6px',
+}
 
 export default FileUploader;
