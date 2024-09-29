@@ -62,7 +62,7 @@ class OpenAIAPI:
                 model="whisper-1",
                 file=f,
                 response_format="verbose_json",
-                timestamp_granularities=["word"]
+                timestamp_granularities=["segment"]
             )
 
         return transcription

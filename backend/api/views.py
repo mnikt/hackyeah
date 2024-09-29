@@ -11,9 +11,9 @@ from api.vertex import VertexAIAPI
 
 @csrf_exempt
 def api(request):
-    for file in request.FILES.values():
-        with open(f'videos/{file.name}', 'wb+') as destination:
-            destination.write(file.read())
+    # for file in request.FILES.values():
+    #     with open(f'videos/{file.name}', 'wb+') as destination:
+    #         destination.write(file.read())
     filenames = [file.file.file.name for file in request.FILES.values()]
 
     sizes = [file.size for file in request.FILES.values()]
@@ -36,6 +36,7 @@ def api(request):
     video_size = int(sizes[0] / 1024 / 1024)
     word_count = transcription_data.text.count(" ") + 1
     chat = OpenAIAPI().make_chat_request(transcription_data.text)
+    timestamp_transcription = [{'timestamp': segment.start, 'text': segment.text} for segment in transcription_data.segments]
 
     data = {
         'chat': chat,
@@ -50,7 +51,7 @@ def api(request):
         'transcription': transcription_data.text,
         'semantic_analysis': semantical_analysis,
         'timelined_errors': timelined_errors,
-        # 'transcription_timestamps': transcription_data.words,
+        'timestamp_transcription': timestamp_transcription,
         'summary': chat.get('podsumowanie')
     }
 
