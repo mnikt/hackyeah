@@ -50,12 +50,15 @@ def api(request):
     t3.start()
 
     t1.join()
+    text = data['transcription_data'].text
+    video_size = int(sizes[0] / 1024 / 1024)
+    word_count = text.count(" ") + 1
+    timestamp_transcription = [{'timestamp': segment.start, 'text': segment.text} for segment in data['transcription_data'].segments]
+
+    data.pop('transcription_data')
+
     t2.join()
     t3.join()
-
-    video_size = int(sizes[0] / 1024 / 1024)
-    word_count = data['transcription_data'].text.count(" ") + 1
-    timestamp_transcription = [{'timestamp': segment.start, 'text': segment.text} for segment in data['transcription_data'].segments]
 
     data |= {
         'keywords': data['chat'].get('klucze'),
@@ -64,7 +67,7 @@ def api(request):
         'interest_level': data['chat'].get('zainteresowanie'),
         'video_size': video_size,
         'word_count': word_count,
-        'transcription': data['transcription_data'].text,
+        'transcription': text,
         'timestamp_transcription': timestamp_transcription,
         'summary': data['chat'].get('podsumowanie')
     }
