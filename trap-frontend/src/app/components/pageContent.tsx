@@ -97,7 +97,7 @@ const PageContent = ({ targetRef }) => {
       });
       setSemantics(parsedData.semantic_analysis);
 
-      let score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
+      const score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
       setScore(score);
 
       setTranscriptions(parsedData.timestamp_transcription as Transcription[]);
@@ -117,7 +117,7 @@ const PageContent = ({ targetRef }) => {
 
 
         <div style={errorColumn}>
-            <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
+            {!errorsTimeline ? <Spinner /> : <FoundErrorsPanel errorsTimeline={errorsTimeline} />}
             {!summary ? <Spinner /> : <SummaryPanel summary={summary} />}
             {!questions ? <Spinner /> : <QuestionsPanel questions={questions} />}
         </div>
