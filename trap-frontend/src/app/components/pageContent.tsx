@@ -14,6 +14,7 @@ import QuestionsPanel from "./panels/questionsPanel";
 import AudiencePanel from "./panels/audiencePanel";
 import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
+import TranscriptionsPanel, { Transcription } from "./organisms/TranscriptionsPanel";
 
   const educationLevelMap = {
     podstawowe: { title: 'Podstawowe', emoji: '📚' },
@@ -58,6 +59,7 @@ const PageContent = () => {
   const [semantics, setSemantics] = useState<Semantics>();
   const [fileName, setFileName] = useState<string>();
   const [score, setScore] = useState<number>();
+  const [transcriptions, setTranscriptions] = useState<Transcription[]>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
@@ -96,17 +98,21 @@ const PageContent = () => {
 
       let score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
       setScore(score);
+
+      setTranscriptions(parsedData.timestamp_transcription as Transcription[]);
     }
   }, []);
 
   return (
     <main style={container}>
-        <div style={videoColumn}>
-          {
-            fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
-          }
-            
-          <TimelinePanel timelinedErrors={errorsTimeline}/>
+      <div style={videoColumn}>
+        {
+          !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
+        }
+        {
+          !transcriptions ? <Spinner /> : <TranscriptionsPanel transcriptions={transcriptions} />
+        }
+          
         </div>
 
         <div style={errorColumn}>
