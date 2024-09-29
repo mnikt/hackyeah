@@ -7,7 +7,7 @@ import KeywordPanel from "./panels/keywordPanel";
 import SummaryPanel from "./panels/summaryPanel";
 import VidInfoPanel from "./panels/vidInfoPanel";
 import TimelinePanel from "./panels/timelinePanel";
-import VideoPanel from "./panels/VideoPanel";
+import VideoPanel from "./panels/videoPanel";
 import WordSuggestionPanel from "./panels/wordSuggestionPanel";
 import QuestionsPanel from "./panels/questionsPanel";
 // import ErrorsPanel from "./panels/errorsPanel";

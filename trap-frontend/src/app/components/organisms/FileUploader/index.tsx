@@ -66,14 +66,18 @@ const FileUploader = () => {
         </div>
         )
         }
-        <div>
+        <div style={submitBtnBoxStyle}>
           <Button disabled={loading} type="submit" text="Wrzuć do analizy"/>
-          {error && <span style={errorStyle}>{error}</span>}
+          {error && <p style={errorStyle}>{error}</p>}
         </div>
       </form>
     </div>
   )
 };
+
+const submitBtnBoxStyle = {
+  marginTop: '16px',
+}
 
 const errorStyle = {
   color: 'red',

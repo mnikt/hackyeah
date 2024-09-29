@@ -42,7 +42,7 @@ export default function Home() {
          </div>
       </div>
 
-      <div className={styles.processSection}>
+      {/* <div className={styles.processSection}>
         <h2 className={styles.processTitle}>O to nasz proces</h2>
         <div className={styles.processCards}>
           <div className={styles.card}>
@@ -61,7 +61,7 @@ export default function Home() {
             <p className={styles.cardText}>Lorem ipsum dolor sit amet bla bla bla and stuff</p>
           </div>
         </div>
-    </div>
+      </div> */}
     </div>
   );
 }
