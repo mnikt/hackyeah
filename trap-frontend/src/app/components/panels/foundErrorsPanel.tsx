@@ -6,26 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // Register the Pie chart elements
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const testData = [
-    {
-      errorName: 'Video Errors',
-      derivedErrors: [{}, {}, {}] // 3 derived errors
-    },
-    {
-      errorName: 'Audio Errors',
-      derivedErrors: [{}, {}] // 2 derived errors
-    },
-    {
-    errorName: 'Speech Errors',
-    derivedErrors: [{}, {}] // 2 derived errors
-    },
-    {
-      errorName: 'Text Errors',
-      derivedErrors: [{}] // 1 derived error
-    }
-  ];
-
-
 // Utility function to generate random colors
 const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -36,16 +16,37 @@ const getRandomColor = () => {
     return color;
 };
 
-const FoundErrorsPanel = ({ errorsTimeline = [] }) => {
+type DerivedError = {
+  timestamp: string;
+  description: string;
+}
+
+type TimelinedError = {
+  errorName: string;
+  derivedErrors: Array<DerivedError>;
+};
+
+type ErrorsTimeline = Array<TimelinedError>;
+
+type FoundErrorPanelProps = {
+    errorsTimeline: ErrorsTimeline
+}
+
+
+const FoundErrorsPanel: React.FC<FoundErrorPanelProps> = ({ errorsTimeline = [] }) => {
     // Ensure errorsTimeline is an array before attempting to map
-    if (!testData || testData.length === 0) {
-        return <div>No errors found</div>; // Return early if no errors are provided
+    if (!errorsTimeline || errorsTimeline.length === 0) {
+        return (
+            <div>
+                <p>No errors found</p>
+            </div>
+        ); // Return early if no errors are provided
     }
 
     // Extract error names and counts
-    const errorNames = testData.map(error => error.errorName); // Extract error names
-    const errorCounts = testData.map(error => error.derivedErrors.length); // Count the number of derived errors for each error type
-    const colors = errorNames.map(() => getRandomColor()); // Generate random colors for each type
+    const errorNames = errorsTimeline.map(error => error.errorName); // Extract error names
+    const errorCounts = errorsTimeline.map(error => error.derivedErrors.length); // Count the number of derived errors for each error type
+    const colors = errorsTimeline.map(() => getRandomColor()); // Generate random colors for each type
 
     // Prepare the data for the Pie chart
     const pieData = {
