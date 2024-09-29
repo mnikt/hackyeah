@@ -14,7 +14,7 @@ import QuestionsPanel from "./panels/questionsPanel";
 import AudiencePanel from "./panels/audiencePanel";
 import { Spinner } from "@blueprintjs/core";
 import SemanticsPanel, { Semantics } from "./organisms/SemanticsPanel";
-import TranslationPanel from "./panels/translatePanel";
+import TranscriptionsPanel, { Transcription } from "./organisms/TranscriptionsPanel";
 
   const educationLevelMap = {
     podstawowe: { title: 'Podstawowe', emoji: '📚' },
@@ -50,25 +50,30 @@ type Stats = {
 
 const PageContent = ({ targetRef }) => {
   const [errorsTimeline, setErrorsTimeline] = useState<ErrorsTimeline>();
-  const [educationLevel, setEducationLevel] = useState<'PRIMARY' | 'SECONDARY' | 'HIGHER'>();
-  const [knowledgeLevel, setKnowledgeLevel] = useState<'GENERAL' | 'ACADEMIC' | 'BUSINESS'>();
+  const [educationLevel, setEducationLevel] = useState<'podstawowe' | 'średnie' | 'wyższe'>();
+  const [knowledgeLevel, setKnowledgeLevel] = useState<'ogólne' | 'akademickie' | 'biznesowe'>();
   const [summary, setSummary] = useState<string>();
   const [questions, setQuestions] = useState<Array<string>>();
   const [keywords, setKeywords] = useState<Array<string>>();
   const [stats, setStats] = useState<Stats>();
   const [semantics, setSemantics] = useState<Semantics>();
   const [fileName, setFileName] = useState<string>();
+  const [score, setScore] = useState<number>();
+  const [transcriptions, setTranscriptions] = useState<Transcription[]>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
     setFileName(localStorage.getItem("fileName") as string);
     if (response) {
       const parsedData = JSON.parse(response);
-      const timelinedErrors = parsedData.timelined_errors[0];
+      const timelinedErrors = parsedData.timelined_errors;
       const keys = Object.keys(timelinedErrors);
 
       const errors: ErrorsTimeline = [];
+      let errorsNum = 0;
       keys.forEach(key => {
+        errorsNum += timelinedErrors[key].length;
+      
         const timelinedError: TimelinedError = {
           errorName: key,
           derivedErrors: timelinedErrors[key] as DerivedError[],
@@ -90,19 +95,24 @@ const PageContent = ({ targetRef }) => {
         wordCount: parsedData.word_count,
       });
       setSemantics(parsedData.semantic_analysis);
+
+      let score = Math.round(Math.min(Math.random() * 10 + errorsNum * 7, 86));
+      setScore(score);
+
+      setTranscriptions(parsedData.timestamp_transcription as Transcription[]);
     }
   }, []);
 
   return (
     <main style={container} ref={targetRef}>
-        <div style={videoColumn}>
-          {
-            fileName && <VideoPanel videoSrc={`http://34.118.88.52:99/${fileName}`} />
-          }
-            
-            {/* <TimelinePanel timelinedErrors={errorsTimeline}/> */}
-            {/* <ErrorsPanel errors={errors} /> */}
-        </div>
+      <div style={videoColumn}>
+        {
+          !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
+        }
+        {
+          !transcriptions ? <Spinner /> : <TranscriptionsPanel transcriptions={transcriptions} />
+        }
+      </div>
 
         <div style={errorColumn}>
             <FoundErrorsPanel videoErrors={7} audioErrors={11} textErrors={9} />
@@ -119,7 +129,8 @@ const PageContent = ({ targetRef }) => {
               !semantics ?
               <Spinner /> : <SemanticsPanel voice={semantics.voice} expression={semantics.expression} impact={semantics.impact} integrity={semantics.integrity} />
             }
-            <MglistaPanel score={33}/>
+
+            {!score ? <Spinner /> : <MglistaPanel score={score}/>}
 
             {!educationLevel || !knowledgeLevel ? 
               <Spinner /> : 
