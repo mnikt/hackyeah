@@ -56,6 +56,20 @@ Podaj szczegółowe wyjaśnienia dla każdego błędu, wraz z sygnaturą czasow�
 Sformatuj odpowiedź jako struktura JSON w ten sposób: "Kategoria": [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]
 """
 
+prompt_errors = """
+  Wyobraź sobie że jesteś doświadczonym mówcą, który obserwuje i analizuje mówców, którzy są na filmie. Twoim zadaniem jest wykryć błędy w tekście mówionym podczas filmu, gdzie mówca mówi w języku polskim. Proszę przeanalizuj poniższy materiał filmowy i zidentyfikuj wszystkie możliwe błędy. Dla każdego zidentyfikowanego błędu podaj sygnaturę czasową, kiedy on wystąpił. Zidentyfikuj i opisz szczegółowo:
+  1. Powtórzenia tekstu to sytuacje gdzie słowa powtarzają się wiele razy np: "Zjadłem placki były smaczne, zjadłem placki bo były dobre". Jeżeli takie występują, wskaż konkretne miejsca w których wystąpiły powtórzenia tekstu. Nazwij ten błąd "powtórzenia tekstu".
+  2. W tekście występuje nagła zmiana tematu, co powoduje niespójność wypowiedzi. Wskaż miejsca,  jeśli takie się pojawiają, gdzie wprowadzone są nowe, niepowiązane tematy bez wyraźnego przejścia lub kontekstu. Jeśli nie są to skrajne zmiany tematu - nie wskazuj. Nazwij ten błąd "nagła zmiana tematu".
+  3. W tekście znajduje się zbyt duża ilość liczb. Wskaż miejsca, gdzie liczby pojawiają się w nadmiarze. Liczby te będą napisane cyframi np. "358,6". Nazwij ten błąd "zbyt duża ilośc liczb".
+  4. W tekście może występować błędne lub nieadekwatne użycie słów, które zaburzają sens wypowiedzi. Wskaż te słowa. Przykładem jest "Kwadratowa rocznica". Wskaż miejsce, w którym występuje - tylko jeśli się pojawia. Nazwij ten błąd "błędne użycie słowa".
+  5. W tekście mogą występować nadmiernie złożone terminy specjalistyczne (żargon), które mogą być trudne do zrozumienia dla osób spoza danej dziedziny. Wskaż miejsca, gdzie użyto zbyt skomplikowanego języka skupionego wokół dziedziny prawa. Nazwij ten błąd "żargon".
+  6. W tekście mogą występować literówki, błędy ortograficzne lub błędnie zapisane wyrazy. Wskaż słowa, które zawierają błędy w pisowni. Przykładem jest słowo "relalizując" zamiast "realizując". Nazwij ten błąd "błędny zapis słowa".
+  7. W tekście mogą występować zbyt liczne formy strony biernej. Wskaż miejsca, gdzie użyto strony biernej np. „wskazano”, „poruszono”, „podano”. Nie myl strony biernej z pierwszą osobą liczby mnogiej, np. "chcieliśmy", "uzyskamy". Nazwij ten błąd "forma bierna".
+  8. W tekście mogą występować za długie, wielokrotnie złożone zdania. Wskaż zdania, które są powyżej trzykrotnie złożone. Nazwij ten błąd "wielokrotnie złożone zdania".
+  9. W tekście mogą pojawiać się skróty, które mogą być niezrozumiałe dla czytelnika. Wskaż miejsca, gdzie użyto skrótów instytucji (np. KSeF). Nazwij ten błąd "brak rozwnięcia skrótu".
+  Sformatuj odpowiedź jako struktura JSON w ten sposób: "Kategoria": [{timestamp: sygnatura czasowa, description: szczegółowe wyjaśnienie dla błędu}]
+"""
+
 class VertexAIAPI:
   def __init__(self) -> None:    
     vertexai.init(project=PROJECT_ID, location="us-central1")
@@ -86,7 +100,7 @@ class VertexAIAPI:
     encoded_video = base64.b64encode(open(file_path, "rb").read()).decode("utf-8")
 
     responses = []
-    for prompt in [build_prompts(prompts_raw)[0]]:
+    for prompt in [build_prompts(prompts_raw)[0], prompt_errors]:
       response = self._make_request(encoded_video, prompt)
       
       json_start_phrase = '```json'

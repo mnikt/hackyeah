@@ -17,7 +17,7 @@ def api(request):
     # openai_responses = [OpenAIAPI().get_file_transcription(filename) for filename in filenames]
     # print(openai_responses)
     
-    timelined_errors = VertexAIAPI().generate_findings(filenames[0])
+    # timelined_errors = VertexAIAPI().generate_findings(filenames[0])
 
     video = VideoFileClip(filename)
 
@@ -48,7 +48,7 @@ def api(request):
         'video_size': video_size,
         'word_count': word_count,
         'transcription': transcription_data.text,
-        'timelined_errors': timelined_errors,
+        # 'timelined_errors': timelined_errors,
         # 'transcription_timestamps': transcription_data.words,
         'summary': chat.get('podsumowanie')
     }
