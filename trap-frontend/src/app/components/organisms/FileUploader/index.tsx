@@ -30,7 +30,7 @@ const FileUploader = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://34.118.88.52:8000/api", {
+      const response = await fetch("http://localhost:8000/api", {
         method: "POST",
         body: formData,
       });
