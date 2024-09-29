@@ -3,3 +3,4 @@ moviepy
 vertexai
 django
 django-cors-headers
+google-cloud-aiplatform
