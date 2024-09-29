@@ -13,9 +13,9 @@ from api.vertex import VertexAIAPI
 def api(request):
     filenames = [file.file.file.name for file in request.FILES.values()]
 
-    for file in request.FILES.values():
-        with open(f'videos/{file.name}', 'wb+') as destination:
-            destination.write(file.read())
+    # for file in request.FILES.values():
+    #     with open(f'videos/{file.name}', 'wb+') as destination:
+    #         destination.write(file.read())
 
     sizes = [file.size for file in request.FILES.values()]
     filename = filenames[0]
