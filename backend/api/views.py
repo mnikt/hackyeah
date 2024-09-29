@@ -12,8 +12,7 @@ from api.vertex import VertexAIAPI
 @csrf_exempt
 def api(request):
     filenames = [file.file.file.name for file in request.FILES.values()]
-    sizes = [file.size for file in request.FILES.values()]
-    filename = filenames[0]
+
     for file in request.FILES.values():
         with open(f'videos/{file.name}', 'wb+') as destination:
             destination.write(file.read())
@@ -27,7 +26,6 @@ def api(request):
     encoded_video = base64.b64encode(open(filenames[0], "rb").read()).decode("utf-8")
     timelined_errors = VertexAIAPI().generate_timestamped_errors(encoded_video)
     semantical_analysis = VertexAIAPI().generate_sematical_analysis(encoded_video)
-    timelined_errors = VertexAIAPI().generate_findings(filenames[0])
 
     video = VideoFileClip(filename)
 
@@ -46,7 +44,6 @@ def api(request):
         'questions': chat.get('pytania'),
         'education_level': chat.get('ocena_wyksztalcenie'),
         'interest_level': chat.get('ocena_zainteresowania'),
-        'errors': errors,
         'overall_score': overall_score,
         'video_duration': video_duration,
         'video_size': video_size,
@@ -54,7 +51,7 @@ def api(request):
         'transcription': transcription_data.text,
         'semantic_analysis': semantical_analysis,
         'timelined_errors': timelined_errors,
-        'transcription_timestamps': transcription_data.words,
+        # 'transcription_timestamps': transcription_data.words,
         'summary': chat.get('podsumowanie')
     }
 
