@@ -16,7 +16,7 @@ const TranscriptionsPanel: React.FC<TranscriptionsPanelProps> = ({transcriptions
           <div style={contentPadding}>
             {transcriptions.map((transcription) => (
               <div key={transcription.timestamp}>
-                <p style={timestampStyle}>{Math.floor(transcription.timestamp / 60)}:{transcription.timestamp % 60}:</p>
+                <p style={timestampStyle}>{Math.floor(transcription.timestamp / 60)}:{Math.floor(transcription.timestamp % 60)}:</p>
                 <p>{transcription.text}</p>
               </div>
             ))}
