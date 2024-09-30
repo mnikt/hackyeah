@@ -16,8 +16,8 @@ class VideoProcessor:
     def get_video_data(self, filename: str) -> Any:
         data = {}
 
-        t1 = Thread(target=self._get_video_data_from_chat, args=(filename, data))
-        t1.start()
+        # t1 = Thread(target=self._get_video_data_from_chat, args=(filename, data))
+        # t1.start()
 
         encoded_video = VideoProcessor.encode_file_to_base64(filename)
 
@@ -27,7 +27,7 @@ class VideoProcessor:
         t3 = Thread(target=self._get_semantic_analysis_from_vertex, args=(encoded_video, data))
         t3.start()
 
-        for t in (t1, t2, t3):
+        for t in (t2, t3):
             t.join()
 
         return data
