@@ -14,8 +14,8 @@ def create_transcription(filename, data):
     video = VideoFileClip(filename)
     data['video_duration'] = int(video.duration)
     open_client = OpenAIAPI()
-    data['transcription_data'] = open_client.get_file_transcription(video)
-    data['chat'] = open_client.make_chat_request(data['transcription_data'].text)
+    data['transcription_data'] = open_client.get_video_transcription(video)
+    data['chat'] = open_client.get_data_from_video_transcription(data['transcription_data'].text)
 
 
 def create_semantic_analysis(encoded_video, vertex, data):
