@@ -1,4 +1,6 @@
 import base64
+from typing import Iterable
+
 import vertexai
 import logging
 import json
@@ -191,7 +193,7 @@ class VertexAIAPI:
 
     return extracted
   
-  def generate_comparison(self, base64_vids: list[str]):
+  def generate_comparison(self, base64_vids: Iterable[str]):
     logging.debug('generate_compariosn')
     
     prompt = """
