@@ -53,7 +53,7 @@ class VideoProcessor:
         data['timelined_errors'] = self.vertex_api.generate_timestamped_errors(encoded_video)
 
     def _get_semantic_analysis_from_vertex(self, encoded_video: str, data: dict) -> None:
-        data['semantic_analysis'] = self.vertex_api.generate_sematical_analysis(encoded_video)
+        data['semantic_analysis'] = self.vertex_api.generate_sematic_analysis(encoded_video)
 
     def get_videos_comparison(self, filenames: list[str]) -> Any:
         encoded_videos = map(VideoProcessor.encode_file_to_base64, filenames)
