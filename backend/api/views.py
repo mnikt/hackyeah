@@ -10,7 +10,7 @@ video_processor = VideoProcessor()
 
 @csrf_exempt
 def api(request: WSGIRequest) -> HttpResponse:
-    file = request.FILES['file_0'][0]
+    file = request.FILES['file_0']
     filename = file.file.file.name
     filesize = int(file.size / 1024 / 1024)
 
