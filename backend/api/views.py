@@ -3,9 +3,12 @@ import json
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+
+from api.s3 import S3Client
 from api.video_processor import VideoProcessor
 
 video_processor = VideoProcessor()
+s3_client = S3Client()
 
 
 @csrf_exempt
@@ -15,7 +18,8 @@ def api(request: WSGIRequest) -> HttpResponse:
     filesize = int(file.size / 1024 / 1024)
 
     data = video_processor.get_video_data(filename) | {
-        'video_size': filesize
+        'video_size': filesize,
+        'video_url': s3_client.upload_file(filename)
     }
 
     return HttpResponse(content=json.dumps(data), content_type="application/json")
