@@ -108,10 +108,10 @@ const PageContent = ({ targetRef }) => {
 
   return (
     <main style={container} ref={targetRef}>
-      {
-        videoURL && <VideoPanel videoSrc={videoURL}/>
-      }
       <div style={videoColumn}>
+        {
+          videoURL && <VideoPanel videoSrc={videoURL}/>
+        }
         {
           !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
         }
