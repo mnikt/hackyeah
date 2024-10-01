@@ -4,7 +4,7 @@ from api.secrets import MINIO_ADDRESS, MINIO_ACCESS_KEY, MINIO_SECRET_KEY
 
 class S3Client:
     def __init__(self):
-        self.client = Minio(MINIO_ADDRESS, MINIO_ACCESS_KEY, MINIO_SECRET_KEY)
+        self.client = Minio(MINIO_ADDRESS, MINIO_ACCESS_KEY, MINIO_SECRET_KEY, secure=False)
         self.bucket = "textuntrap"
         self.files_count = 0
 
