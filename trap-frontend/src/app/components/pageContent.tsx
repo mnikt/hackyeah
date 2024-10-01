@@ -58,14 +58,13 @@ const PageContent = ({ targetRef }) => {
   const [keywords, setKeywords] = useState<Array<string>>();
   const [stats, setStats] = useState<Stats>();
   const [semantics, setSemantics] = useState<Semantics>();
-  const [fileName, setFileName] = useState<string>();
   const [score, setScore] = useState<number>();
   const [transcriptions, setTranscriptions] = useState<Transcription[]>();
   const [translation, setTranslation] = useState<string>();
+  const [videoURL, setVideoURL] = useState<string>();
 
   useEffect(() => {
     const response = localStorage.getItem('response');
-    setFileName(localStorage.getItem("fileName") as string);
     if (response) {
       const parsedData = JSON.parse(response);
       const timelinedErrors = parsedData.timelined_errors;
@@ -91,6 +90,7 @@ const PageContent = ({ targetRef }) => {
       setQuestions(parsedData.questions);
       setKeywords(parsedData.keywords);
       setTranslation(parsedData.translation);
+      setVideoURL(parsedData.video_url);
       setStats({
         duration: parsedData.video_duration,
         size: parsedData.video_size,
@@ -108,6 +108,9 @@ const PageContent = ({ targetRef }) => {
 
   return (
     <main style={container} ref={targetRef}>
+      {
+        videoURL && <VideoPanel videoSrc={videoURL}/>
+      }
       <div style={videoColumn}>
         {
           !errorsTimeline ? <Spinner /> : <TimelinePanel timelinedErrors={errorsTimeline}/>
