@@ -14,7 +14,7 @@ class VideoProcessor:
         self.vertex_api = VertexAIAPI()
 
     def get_video_data(self, filename: str) -> Any:
-        data = {}
+        data = {'status': 'OK'}
 
         # t1 = Thread(target=self._get_video_data_from_chat, args=(filename, data))
         # t1.start()
