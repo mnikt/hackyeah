@@ -57,7 +57,7 @@ VERTEX_ERRORS_PROMPTS = [
         'Pauzy: długie przerwy w mówieniu, które mogą zaburzać rytm wypowiedzi.',
         'Głośność: gdy poziom głośności jest wyższy lub niższy niż średnia',
         'Szum: Obecność zakłóceń dźwiękowych. Zakłócenia są dźwiękami, które nie są słowami i występują w tle',
-        'Ackentowanie: ',
+        'Akcentowanie: ',
         'Semantyka angielskiego: (np. "European Union"): niepoprawne użycie angielskich terminów lub kalk językowych w kontekście polskiej wypowiedzi',
         'Drugi plan – inna osoba na planie: obecność innych osób w tle',
         'Ruchy: ruchy i gesty mówcy, takie jak wiercenie się, machanie rękoma, nadmierna gestykulacja',
@@ -65,13 +65,13 @@ VERTEX_ERRORS_PROMPTS = [
         'Niezgodność wypowiedzi z transkrypcją: sytuacje, w których mówiona treść nie odpowiada wyświetlanej na filmie transkrypcji',
         'Używanie strony biernej: nadmierne stosowanie strony biernej, np. "podano", "wskazano", "podsumowano", co może utrudniać zrozumienie i osłabiać przekaz wypowiedzi',
 
-        'Powtórzenia tekstu to sytuacje gdzie słowa powtarzają się wiele razy np: "Zjadłem placki były smaczne, zjadłem placki bo były dobre". Jeżeli takie występują, wskaż konkretne miejsca w których wystąpiły powtórzenia tekstu. Nazwij ten błąd "powtórzenia tekstu".',
-        'Nagła zmiana tematu, która powoduje niespójność wypowiedzi. Wskaż miejsca,  jeśli takie się pojawiają, gdzie wprowadzone są nowe, niepowiązane tematy bez wyraźnego przejścia lub kontekstu. Jeśli nie są to skrajne zmiany tematu - nie wskazuj. Nazwij ten błąd "nagła zmiana tematu".',
-        'Zbyt duża ilość liczb. Wskaż miejsca, gdzie liczby pojawiają się w nadmiarze. Liczby te będą napisane cyframi np. "358,6". Nazwij ten błąd "zbyt duża ilośc liczb".',
-        'Błędne lub nieadekwatne użycie słów: które zaburzają sens wypowiedzi. Wskaż te słowa. Przykładem jest "Kwadratowa rocznica". Wskaż miejsce, w którym występuje - tylko jeśli się pojawia. Nazwij ten błąd "błędne użycie słowa".',
-        'Nadmiernie złożone terminy specjalistyczne (żargon), które mogą być trudne do zrozumienia dla osób spoza danej dziedziny. Wskaż miejsca, gdzie użyto zbyt skomplikowanego języka skupionego wokół dziedziny prawa. Nazwij ten błąd "żargon".',
-        'Literówki, błędy ortograficzne lub błędnie zapisane wyrazy. Wskaż słowa, które zawierają błędy w pisowni. Przykładem jest słowo "relalizując" zamiast "realizując". Nazwij ten błąd "błędny zapis słowa".',
-        'Za długie, wielokrotnie złożone zdania: Wskaż zdania, które są powyżej trzykrotnie złożone. Nazwij ten błąd "wielokrotnie złożone zdania".',
-        'Skróty, które mogą być niezrozumiałe dla czytelnika. Wskaż miejsca, gdzie użyto skrótów instytucji (np. KSeF). Nazwij ten błąd "brak rozwnięcia skrótu".'
+        # 'Powtórzenia tekstu to sytuacje gdzie słowa powtarzają się wiele razy np: "Zjadłem placki były smaczne, zjadłem placki bo były dobre". Jeżeli takie występują, wskaż konkretne miejsca w których wystąpiły powtórzenia tekstu. Nazwij ten błąd "powtórzenia tekstu".',
+        'Nagła zmiana tematu: Nagła zmiana tematu, która powoduje niespójność wypowiedzi. Wskaż miejsca,  jeśli takie się pojawiają, gdzie wprowadzone są nowe, niepowiązane tematy bez wyraźnego przejścia lub kontekstu. Jeśli nie są to skrajne zmiany tematu - nie wskazuj.',
+        'Zbyt duża ilość liczb: Wskaż miejsca, gdzie liczby pojawiają się w nadmiarze. Liczby te będą napisane cyframi np. "358,6".',
+        'Błędne użycie słowa: Słowa, których użycie jest błędne, nieadekwatne oraz które zaburzają sens wypowiedzi. Wskaż te słowa. Przykładem jest "Kwadratowa rocznica". Wskaż miejsce, w którym występuje - tylko jeśli się pojawia.',
+        'Żargon: Nadmiernie złożone terminy specjalistyczne, które mogą być trudne do zrozumienia dla osób spoza danej dziedziny. Wskaż miejsca, gdzie użyto zbyt skomplikowanego języka skupionego wokół dziedziny prawa.',
+        'Błędny zapis słowa: błędy ortograficzne lub błędnie zapisane wyrazy. Wskaż słowa, które zawierają błędy w pisowni. Przykładem jest słowo "relalizując" zamiast "realizując".',
+        'Wielokrotnie złożone zdania: Za długie, wielokrotnie złożone zdania: Wskaż zdania, które są powyżej trzykrotnie złożone.',
+        'Brak rozwnięcia skrótu: Skróty, które mogą być niezrozumiałe dla czytelnika. Wskaż miejsca, gdzie użyto skrótów instytucji (np. KSeF).'
     ]
 ]
