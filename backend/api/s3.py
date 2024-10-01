@@ -1,5 +1,5 @@
 from minio import Minio
-from secrets import MINIO_ADDRESS, MINIO_ACCESS_KEY, MINIO_SECRET_KEY
+from api.secrets import MINIO_ADDRESS, MINIO_ACCESS_KEY, MINIO_SECRET_KEY
 
 
 class S3Client:
