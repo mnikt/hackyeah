@@ -21,10 +21,10 @@ class VideoProcessor:
 
         encoded_video = VideoProcessor.encode_file_to_base64(filename)
 
-        t2 = Thread(target=self._get_timestamped_errors_from_vertex, args=(encoded_video, data))
+        t2 = Thread(target=VideoProcessor._get_timestamped_errors_from_vertex, args=(encoded_video, data))
         t2.start()
 
-        t3 = Thread(target=self._get_semantic_analysis_from_vertex, args=(encoded_video, data))
+        t3 = Thread(target=VideoProcessor._get_semantic_analysis_from_vertex, args=(encoded_video, data))
         t3.start()
 
         for t in (t1, t2, t3):
@@ -49,11 +49,13 @@ class VideoProcessor:
         data['translation'] = video_data.get('eng')
         data['summary'] = video_data.get('podsumowanie')
 
-    def _get_timestamped_errors_from_vertex(self, encoded_video: str, data: dict) -> None:
-        data['timelined_errors'] = self.vertex_api.generate_timestamped_errors(encoded_video)
+    @staticmethod
+    def _get_timestamped_errors_from_vertex(encoded_video: str, data: dict) -> None:
+        data['timelined_errors'] = VertexAIAPI().generate_timestamped_errors(encoded_video)
 
+    @staticmethod
     def _get_semantic_analysis_from_vertex(self, encoded_video: str, data: dict) -> None:
-        data['semantic_analysis'] = self.vertex_api.generate_sematic_analysis(encoded_video)
+        data['semantic_analysis'] = VertexAIAPI().generate_sematic_analysis(encoded_video)
 
     def get_videos_comparison(self, filenames: list[str]) -> Any:
         encoded_videos = map(VideoProcessor.encode_file_to_base64, filenames)
