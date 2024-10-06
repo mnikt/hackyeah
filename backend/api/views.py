@@ -9,6 +9,8 @@ video_processor = VideoProcessor()
 
 
 def get_files_name(file) -> str:
+    print(type(file.file))
+
     if hasattr(file.file, "name"):
         return file.file.name
     else:
