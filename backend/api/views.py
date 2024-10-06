@@ -18,7 +18,7 @@ def get_files_name(file) -> str:
 @csrf_exempt
 def api(request: WSGIRequest) -> HttpResponse:
     file = request.FILES['file_0']
-    filename = file.file.file.name
+    filename = get_files_name(file)
     filesize = int(file.size / 1024 / 1024)
 
     data = video_processor.get_video_data(filename) | {
@@ -30,7 +30,7 @@ def api(request: WSGIRequest) -> HttpResponse:
 
 @csrf_exempt
 def comparison(request: WSGIRequest) -> HttpResponse:
-    filenames = [file.file.file.name for file in request.FILES.values()]
+    filenames = [get_files_name(file) for file in request.FILES.values()]
 
     data = {
         'comparison': video_processor.get_videos_comparison(filenames)
