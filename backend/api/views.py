@@ -8,6 +8,13 @@ from api.video_processor import VideoProcessor
 video_processor = VideoProcessor()
 
 
+def get_files_name(file) -> str:
+    if hasattr(file.file, "name"):
+        return file.file.name
+    else:
+        return file.file.file.name
+
+
 @csrf_exempt
 def api(request: WSGIRequest) -> HttpResponse:
     file = request.FILES['file_0']
