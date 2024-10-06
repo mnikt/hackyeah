@@ -57,7 +57,7 @@ class VideoProcessor:
         print("TIMESTAMPS DONE")
 
     @staticmethod
-    def _get_semantic_analysis_from_vertex(self, encoded_video: str, data: dict) -> None:
+    def _get_semantic_analysis_from_vertex(encoded_video: str, data: dict) -> None:
         data['semantic_analysis'] = VertexAIAPI().generate_sematic_analysis(encoded_video)
         print("SEMANTICS DONE")
 
