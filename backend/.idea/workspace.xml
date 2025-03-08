@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5734895f-2fa3-4044-bcb4-8ab9a18bc5c7" name="Changes" comment="openai.py">
-      <change afterPath="$PROJECT_DIR$/api/video_processor.py" afterDir="false" />
+    <list default="true" id="5734895f-2fa3-4044-bcb4-8ab9a18bc5c7" name="Changes" comment="video on page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/prompts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/vertex.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/video_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/video_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/dashboard/comparison/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/dashboard/comparison/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="minio" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -59,7 +61,8 @@
     "Django Server.backend.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "refactoring",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "test",
     "last_opened_file_path": "/home/mrcn/hackyeah/backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -82,14 +85,13 @@
         <env name="DJANGO_SETTINGS_MODULE" value="backend.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.10 (backend) (2)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="localhost" />
+      <option name="host" value="" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -102,8 +104,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
-        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.25659.43" />
+        <option value="bundled-python-sdk-181015f7ab06-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.25659.43" />
       </set>
     </attachedChunks>
   </component>
@@ -125,7 +127,17 @@
       <workItem from="1727593649107" duration="3130000" />
       <workItem from="1727597284359" duration="4415000" />
       <workItem from="1727605541493" duration="2066000" />
-      <workItem from="1727721849763" duration="5826000" />
+      <workItem from="1727721849763" duration="10497000" />
+      <workItem from="1727794925511" duration="2553000" />
+      <workItem from="1741358394254" duration="77000" />
+      <workItem from="1741358484546" duration="195000" />
+      <workItem from="1741425432784" duration="1234000" />
+      <workItem from="1741426706439" duration="111000" />
+      <workItem from="1741426847227" duration="2399000" />
+      <workItem from="1741429844828" duration="7878000" />
+      <workItem from="1741447274885" duration="3460000" />
+      <workItem from="1741452464037" duration="1298000" />
+      <workItem from="1741454397351" duration="4586000" />
     </task>
     <task id="LOCAL-00001" summary="whisper and chat">
       <option name="closed" value="true" />
@@ -407,7 +419,63 @@
       <option name="project" value="LOCAL" />
       <updated>1727722966224</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="views.py">
+      <option name="closed" value="true" />
+      <created>1727727907064</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1727727907064</updated>
+    </task>
+    <task id="LOCAL-00037" summary="vertex.py">
+      <option name="closed" value="true" />
+      <created>1727732453489</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1727732453489</updated>
+    </task>
+    <task id="LOCAL-00038" summary="minio">
+      <option name="closed" value="true" />
+      <created>1727795857109</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1727795857109</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fix">
+      <option name="closed" value="true" />
+      <created>1727796118311</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1727796118311</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix">
+      <option name="closed" value="true" />
+      <created>1727797105924</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1727797105924</updated>
+    </task>
+    <task id="LOCAL-00041" summary="video on page">
+      <option name="closed" value="true" />
+      <created>1727797344897</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1727797344897</updated>
+    </task>
+    <task id="LOCAL-00042" summary="video on page">
+      <option name="closed" value="true" />
+      <created>1727797487859</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1727797487859</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,8 +504,12 @@
     <MESSAGE value="localhost" />
     <MESSAGE value="threads" />
     <MESSAGE value="translation" />
-    <MESSAGE value="fix" />
     <MESSAGE value="openai.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="openai.py" />
+    <MESSAGE value="views.py" />
+    <MESSAGE value="vertex.py" />
+    <MESSAGE value="minio" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="video on page" />
+    <option name="LAST_COMMIT_MESSAGE" value="video on page" />
   </component>
 </project>

@@ -14,23 +14,23 @@ class VideoProcessor:
         self.vertex_api = VertexAIAPI()
 
     def get_video_data(self, filename: str) -> Any:
-        data = {}
+        # data = {}
 
-        t1 = Thread(target=self._get_video_data_from_chat, args=(filename, data))
-        t1.start()
+        # t1 = Thread(target=self._get_video_data_from_chat, args=(filename, data))
+        # t1.start()
 
         encoded_video = VideoProcessor.encode_file_to_base64(filename)
+        return self._get_timestamped_errors_from_vertex(encoded_video)
+        # t2 = Thread(target=self._get_timestamped_errors_from_vertex, args=(encoded_video, data))
+        # t2.start()
+        # #
+        # t3 = Thread(target=self._get_semantic_analysis_from_vertex, args=(encoded_video, data))
+        # t3.start()
 
-        t2 = Thread(target=self._get_timestamped_errors_from_vertex, args=(encoded_video, data))
-        t2.start()
-
-        t3 = Thread(target=self._get_semantic_analysis_from_vertex, args=(encoded_video, data))
-        t3.start()
-
-        for t in (t1, t2, t3):
-            t.join()
-
-        return data
+        # for t in (t1, t2, t3):
+        #     t.join()
+        #
+        # return data
 
     def _get_video_data_from_chat(self, filename: str, data: dict) -> None:
         video = VideoFileClip(filename)
@@ -49,8 +49,8 @@ class VideoProcessor:
         data['translation'] = video_data.get('eng')
         data['summary'] = video_data.get('podsumowanie')
 
-    def _get_timestamped_errors_from_vertex(self, encoded_video: str, data: dict) -> None:
-        data['timelined_errors'] = self.vertex_api.generate_timestamped_errors(encoded_video)
+    def _get_timestamped_errors_from_vertex(self, encoded_video: str) -> None:
+        return self.vertex_api.generate_sematic_analysis(encoded_video)
 
     def _get_semantic_analysis_from_vertex(self, encoded_video: str, data: dict) -> None:
         data['semantic_analysis'] = self.vertex_api.generate_sematic_analysis(encoded_video)

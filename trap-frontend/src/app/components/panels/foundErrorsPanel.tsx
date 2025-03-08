@@ -35,43 +35,44 @@ type FoundErrorPanelProps = {
 
 const FoundErrorsPanel: React.FC<FoundErrorPanelProps> = ({ errorsTimeline }) => {
     // Extract error names and counts
-    const errorNames = errorsTimeline.map(error => error.errorName); // Extract error names
-    const errorCounts = errorsTimeline.map(error => error.derivedErrors.length); // Count the number of derived errors for each error type
-    const colors = errorsTimeline.map(() => getRandomColor()); // Generate random colors for each type
+    // const errorNames = errorsTimeline?.map(error => error.errorName); // Extract error names
+    // const errorCounts = errorsTimeline.map(error => error.derivedErrors.length); // Count the number of derived errors for each error type
+    // const colors = errorsTimeline.map(() => getRandomColor()); // Generate random colors for each type
 
-    // Prepare the data for the Pie chart
-    const pieData = {
-        labels: errorNames, // Error names as labels
-        datasets: [{
-            label: 'Errors by Type',
-            data: errorCounts, // Derived errors counts as the data
-            backgroundColor: colors, // Random colors
-        }]
-    };
+    // // Prepare the data for the Pie chart
+    // const pieData = {
+    //     labels: errorNames, // Error names as labels
+    //     datasets: [{
+    //         label: 'Errors by Type',
+    //         data: errorCounts, // Derived errors counts as the data
+    //         backgroundColor: colors, // Random colors
+    //     }]
+    // };
 
-    return (
-        <div>
-            <Card interactive={false} elevation={Elevation.ONE} style={cardStyle}>
-                {/* Header */}
-                <div style={header}>
-                    <h3>Znalezione Błędy</h3>
-                    <h2 style={highlight}>{errorCounts.reduce((acc, count) => acc + count, 0)}</h2> {/* Dynamic score display */}
-                </div>
+    // return (
+    //     <div>
+    //         <Card interactive={false} elevation={Elevation.ONE} style={cardStyle}>
+    //             {/* Header */}
+    //             <div style={header}>
+    //                 <h3>Znalezione Błędy</h3>
+    //                 <h2 style={highlight}>{errorCounts.reduce((acc, count) => acc + count, 0)}</h2> {/* Dynamic score display */}
+    //             </div>
 
-                {/* Pie Chart */}
-                <div style={chart}>
-                <Pie
-                    data={pieData}
-                    options={{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                    }}
-                    height={200} // Set the height for the pie chart
-                />
-                </div>
-            </Card>
-        </div>
-    );
+    //             {/* Pie Chart */}
+    //             <div style={chart}>
+    //             <Pie
+    //                 data={pieData}
+    //                 options={{
+    //                     responsive: true,
+    //                     maintainAspectRatio: false,
+    //                 }}
+    //                 height={200} // Set the height for the pie chart
+    //             />
+    //             </div>
+    //         </Card>
+    //     </div>
+    // );
+    return <></>
 };
 
 /* Styles */
