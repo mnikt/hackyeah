@@ -1,78 +1,43 @@
 'use client'; // Ensure it's a client component
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Card, Elevation, Tabs, Tab } from "@blueprintjs/core"; // Import Blueprint components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faVolumeUp, faAlignLeft } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 
-type DerivedError = {
-  timestamp: string;
-  description: string;
-}
-
 type TimelinedError = {
-  errorName: string;
-  derivedErrors: Array<DerivedError>;
+  description: string;
+  timestamp: string;
+  positionX: number;
+  positionY: number;
+  size: number;
 };
 
-type ErrorsTimeline = Array<TimelinedError>;
+const ErrorPanel = (props: { error: TimelinedError, videoRef: React.MutableRefObject<HTMLVideoElement | undefined> }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  const captureFrame = () => {
+    const video = props.videoRef.current;
+    const canvas = canvasRef.current;
+    
+    if (video && canvas) {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
-type ErrorsPanelsProps = {
-  timelinedErrors: ErrorsTimeline | undefined;
-}
+      // Set canvas size to match video dimensions
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
 
-const ErrorsPanel: React.FC<ErrorsPanelsProps> = ({ timelinedErrors }) => {
-  const [selectedTab, setSelectedTab] = useState('video'); // Default tab is 'video'
-
-  // Filter errors based on the selected tab (tag)
-  // const filteredErrors = errors.filter(error => error.tag === selectedTab);
+      // Draw the current video frame onto the canvas
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
+  };
 
   return (
     <div>
       <Card interactive={false} elevation={Elevation.TWO} style={cardStyle}>
-        {/* Blueprint Tabs with FontAwesome icons */}
-        {/* <Tabs id="error-tabs" onChange={setSelectedTab} selectedTabId={selectedTab}>
-          <Tab
-            id="video"
-            title={
-              <>
-                <FontAwesomeIcon icon={faVideo} style={iconStyle} />
-                <span style={tabText}> Wideo </span>
-              </>
-            }
-          />
-          <Tab
-            id="audio"
-            title={
-              <>
-                <FontAwesomeIcon icon={faVolumeUp} style={iconStyle} />
-                <span style={tabText}> Audio </span>
-              </>
-            }
-          />
-          <Tab
-            id="text"
-            title={
-              <>
-                <FontAwesomeIcon icon={faAlignLeft} style={iconStyle} />
-                <span style={tabText}> Tekst </span>
-              </>
-            }
-          />
-          <Tabs.Expander />
-        </Tabs> */}
-
-        {/* Errors content */}
         <div style={errorsContainer}>
-          {timelinedErrors && timelinedErrors.map((error, index) => (
-            <div key={index} style={errorItem}>
-              <div style={timestamp}>{error.errorName}</div>
-              <div style={content}>
-              <div style={origin}>{error.origin}</div>
-                <div style={errorText}>{error.text}</div>
-              </div>
-            </div>
-          ))}
+          <canvas ref={canvasRef}> </canvas>
         </div>
       </Card>
     </div>
@@ -91,53 +56,11 @@ const cardStyle = {
   overflow: 'hidden' 
 };
 
-const iconStyle = {
-  marginRight: '5px',
-  fontSize: '16px',
-};
-
-const tabText = {
-  fontSize: '14px',
-  fontWeight: 'bold',
-};
-
 const errorsContainer = {
   marginTop: '15px',
   display: 'flex',
-  flexDirection: 'column',
+  // flexDirection: 'column',
   gap: '10px',
 };
 
-const errorItem = {
-  display: 'flex',
-  alignItems: 'flex-start',
-  gap: '10px',
-  padding: '10px 0',
-  borderBottom: '1px solid #e0e0e0',
-};
-
-const timestamp = {
-  fontWeight: 'bold',
-  color: '#757575',
-  fontSize: '14px',
-};
-
-const content = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'flex-start',
-  flexDirection: 'column'
-}
-
-const origin = {
-  fontSize: '14px',
-  color: '#407bff',
-  fontWeight: "bold"
-}
-
-const errorText = {
-  fontSize: '14px',
-  color: '#333',
-};
-
-export default ErrorsPanel;
+export default ErrorPanel;

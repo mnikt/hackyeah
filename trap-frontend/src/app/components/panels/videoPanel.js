@@ -5,7 +5,7 @@ const VideoPanel = ({ videoSrc }) => {
   return (
     <div>
       <Card interactive={false} elevation={Elevation.ONE}>
-        <video controls style={videoStyle}>
+        <video controls style={videoStyle} display="none">
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

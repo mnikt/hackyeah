@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5734895f-2fa3-4044-bcb4-8ab9a18bc5c7" name="Changes" comment="video on page">
+    <list default="true" id="5734895f-2fa3-4044-bcb4-8ab9a18bc5c7" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/openai.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/openai.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/prompts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/vertex.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/video_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/video_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/dashboard/comparison/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/dashboard/comparison/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +136,7 @@
       <workItem from="1741429844828" duration="7878000" />
       <workItem from="1741447274885" duration="3460000" />
       <workItem from="1741452464037" duration="1298000" />
-      <workItem from="1741454397351" duration="4586000" />
+      <workItem from="1741454397351" duration="10943000" />
     </task>
     <task id="LOCAL-00001" summary="whisper and chat">
       <option name="closed" value="true" />
@@ -475,7 +474,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727797487859</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="test">
+      <option name="closed" value="true" />
+      <created>1741460453229</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1741460453229</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -510,6 +517,18 @@
     <MESSAGE value="minio" />
     <MESSAGE value="fix" />
     <MESSAGE value="video on page" />
-    <option name="LAST_COMMIT_MESSAGE" value="video on page" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/views.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

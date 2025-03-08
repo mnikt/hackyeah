@@ -14,7 +14,7 @@ export default function Home() {
     <div className={styles.page}>
       <Header action={() => generatePDF(targetRef, {filename: 'raport.pdf'})} />
 
-      <PageContent targetRef={targetRef} />
+      <PageContent />
 
       {/* <Link href="/home">About Us</Link> */}
       {/* <main className={styles.main}>

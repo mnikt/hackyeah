@@ -15,10 +15,8 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
   const [addedFiles, setAddedFiles] = useState<Array<File>>([]);
 
 
-  const handleInputChange: FormEventHandler<HTMLInputElement> = (event) => {
-    const files = event.target.files as FileList;
-
-    setAddedFiles(Object.values(files));
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setAddedFiles(Object.values(event.target.files as FileList));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -30,7 +28,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
       setLoading(true);
       await onSubmit(addedFiles);
     } catch (error) {
-      setError(`Wystąpił błąd podczas analizy pliku: ${error ? error.message : ''}`);
+      // setError(`Wystąpił błąd podczas analizy pliku: ${error ? error.message : ''}`);
       console.error(error);
     }
     setLoading(false);

@@ -130,3 +130,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 APPEND_SLASH = False
+
+FILE_UPLOAD_MAX_MEMORY_SIZE=0

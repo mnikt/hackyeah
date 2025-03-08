@@ -4,13 +4,13 @@ from typing import Any
 
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
-from api.openai import OpenAIAPI
+# from api.openai import OpenAIAPI
 from api.vertex import VertexAIAPI
 
 
 class VideoProcessor:
     def __init__(self):
-        self.open_api = OpenAIAPI()
+        # self.open_api = OpenAIAPI()
         self.vertex_api = VertexAIAPI()
 
     def get_video_data(self, filename: str) -> Any:
@@ -54,10 +54,10 @@ class VideoProcessor:
 
     def _get_semantic_analysis_from_vertex(self, encoded_video: str, data: dict) -> None:
         data['semantic_analysis'] = self.vertex_api.generate_sematic_analysis(encoded_video)
-
-    def get_videos_comparison(self, filenames: list[str]) -> Any:
-        encoded_videos = map(VideoProcessor.encode_file_to_base64, filenames)
-        return self.vertex_api.generate_comparison(encoded_videos)
+    #
+    # def get_videos_comparison(self, filenames: list[str]) -> Any:
+    #     encoded_videos = map(VideoProcessor.encode_file_to_base64, filenames)
+    #     return self.vertex_api.generate_comparison(encoded_videos)
 
     @staticmethod
     def encode_file_to_base64(filepath: str) -> str:
