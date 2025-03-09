@@ -42,7 +42,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
   return (
     <div>
       <form action="/api" method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <p style={{fontSize: '12px', marginBottom: '7px'}}>Proces przetwarzania może zająć do 4 minut</p>
+        <p style={{fontSize: '12px', marginBottom: '7px'}}></p>
         { loading ? <Spinner /> :
         (
         <div>
@@ -54,7 +54,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
         )
         }
         <div style={submitBtnBoxStyle}>
-          <Button disabled={false} type="submit" text="Wrzuć do analizy" style={primaryButton} />
+          <Button disabled={false} type="submit" text="Is it fake?" style={primaryButton} />
           {error && <p style={errorStyle}>{error}</p>}
         </div>
       </form>
@@ -64,7 +64,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ multipleUpload, onSubmit })
 
 const primaryButton = {
   padding: '15px 30px',
-  backgroundColor: '#407bff',
+  backgroundColor: '#ff3131',
   color: '#fff',
   border: 'none',
   borderRadius: '15px',

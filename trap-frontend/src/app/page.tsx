@@ -53,8 +53,8 @@ export default function Home() {
 
         {/* Right Column: Text and Buttons */}
         <div className={styles.rightColumn}>
-            <h1 className={styles.title}>Udostępnij swoją wypowiedź</h1>
-            <p className={styles.subtitle}>Pokażemy Ci jak mówić, by każdy Ciebie zrozumiał.</p>
+            <h1 className={styles.title}>Chroń swój wizerunek przed manipulacją</h1>
+            <p className={styles.subtitle}>Sprawdź, czy wideo z Twoim udziałem zawiera oznaki deepfake.</p>
 
             <div className={styles.buttonContainer}>
               <FileUploader onSubmit={handleSubmit} multipleUpload={false} />

@@ -10,7 +10,6 @@ import json
 from vertexai.generative_models import GenerativeModel, Part
 
 from api.prompts import VERTEX_PROMPT
-from api.secrets import PROJECT_ID
 
 
 class VertexAIAPI:

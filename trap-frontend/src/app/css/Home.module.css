@@ -27,6 +27,7 @@
     height: 80px; /* Restrict the height to 100px */
     background: url("/img/logo.png") no-repeat center; /* Position the logo */
     background-size: contain; /* Ensures the logo scales within the div */
+    z-index: -1000;
 }
 
 .columns {
@@ -36,16 +37,7 @@
     height: calc(100vh - 25px);
     padding: 0 50px; /* Add some padding */
     position: relative;
-    background-image:
-radial-gradient(at 2% 2%, hsla(221,100%,62%,0.5) 0px, transparent 50%),
-radial-gradient(at 2% 92%, hsla(250,95%,62%,0.5) 0px, transparent 50%),
-radial-gradient(at 96% 9%, hsla(221,100%,62%,0.5) 0px, transparent 50%),
-radial-gradient(at 59% 36%, hsla(189,0%,100%,1) 0px, transparent 50%),
-radial-gradient(at 42% 67%, hsla(355,0%,100%,1) 0px, transparent 50%),
-radial-gradient(at 64% 63%, hsla(340,0%,100%,1) 0px, transparent 50%),
-radial-gradient(at 32% 31%, hsla(19,0%,100%,1) 0px, transparent 50%),
-radial-gradient(at 95% 95%, hsla(242,100%,70%,0.5) 0px, transparent 20%),
-radial-gradient(at 60% 82%, hsla(343,100%,76%,0.2) 0px, transparent 50%);
+    background: linear-gradient(90deg, #000000 0%, #737373 100%);
 }
 
   /* Left column for the image */
@@ -67,14 +59,14 @@ radial-gradient(at 60% 82%, hsla(343,100%,76%,0.2) 0px, transparent 50%);
   
   /* Title and Subtitle */
   .title {
-    font-size: 48px;
+    font-size: 43px;
     font-weight: 700;
-    color: #000;
+    color: #ffffff;
   }
   
   .subtitle {
     font-size: 20px;
-    color: #8f8f8f;
+    color: #c4c1c1;
     margin-bottom: 30px;
     margin-top: 5px;
   }

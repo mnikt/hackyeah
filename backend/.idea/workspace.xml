@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5734895f-2fa3-4044-bcb4-8ab9a18bc5c7" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/openai.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/openai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/prompts.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/prompts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/video_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/video_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/vertex.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/vertex.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/components/pageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/components/pageContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../trap-frontend/src/app/components/panels/errorsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../trap-frontend/src/app/components/panels/errorsPanel.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,24 +54,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.backend.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "/home/mrcn/hackyeah/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "ts.external.directory.path": "/home/mrcn/Downloads/pycharm-professional-2024.1.4/pycharm-2024.1.4/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.backend.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mrcn/hackyeah/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/mrcn/Downloads/pycharm-professional-2024.1.4/pycharm-2024.1.4/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="backend" type="Python.DjangoServer" factoryName="Django server">
       <module name="backend" />
@@ -136,7 +135,8 @@
       <workItem from="1741429844828" duration="7878000" />
       <workItem from="1741447274885" duration="3460000" />
       <workItem from="1741452464037" duration="1298000" />
-      <workItem from="1741454397351" duration="10943000" />
+      <workItem from="1741454397351" duration="16758000" />
+      <workItem from="1741481403158" duration="3976000" />
     </task>
     <task id="LOCAL-00001" summary="whisper and chat">
       <option name="closed" value="true" />
@@ -482,7 +482,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741460453229</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="test">
+      <option name="closed" value="true" />
+      <created>1741473563311</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1741473563311</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

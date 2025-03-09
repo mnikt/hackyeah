@@ -88,13 +88,14 @@ const container = {
 };
 
 // Logo Side Styles
-const logoImage = {
-    display: 'block',
-    width: '200px',
-    height: '44px',
-    background: "url('/img/logo.png') no-repeat center",
-    backgroundSize: 'contain',
-};
+// const logoImage = {
+//     display: 'block',
+//     width: 'auto',
+//     height: 'auto',
+//     background: "url('/img/logo.svg') no-repeat center",
+//     backgroundSize: 'contain',
+//     zIndex: 100
+// };
 
 // Buttons Section
 const buttonsSide = {
